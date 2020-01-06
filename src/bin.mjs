@@ -130,25 +130,32 @@ const init = async () => {
   let changedFiles = await Promise.all(
     files.map(async file => {
       const content = await fs.readFile(file, 'utf8')
-      config.filepath = file
-      const changed = prettier.format(content, config)
+
+      const changed = prettier.format(content, { ...config, filepath: file })
+
       if (content !== changed) {
         if (args.write) {
           await fs.writeFile(file, changed)
-        } else {
-          return file
         }
+        return file
       }
     }),
   )
 
   changedFiles = changedFiles.filter(a => a)
 
+  log.info('format:')
+
   if (changedFiles.length) {
-    log.annotate('format: files that need formatting:')
-    log.info(changedFiles.join('\n'))
+    let title = 'files that need formatting:'
+    if (args.write) {
+      title = 'changed files:'
+    }
+
+    log.annotate(title)
+    log.warn(changedFiles.join('\n'))
   } else {
-    log.success('format:', 'no changes needed')
+    log.success('no changes needed')
   }
 }
 
