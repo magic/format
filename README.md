@@ -81,5 +81,8 @@ first commit
 ##### 0.0.3
 * update deps
 
-##### 0.0.4 - unreleased
+##### 0.0.4
+* update info messages
+
+##### 0.0.5 - unreleased
 ...
