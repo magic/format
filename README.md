@@ -74,5 +74,9 @@ f -w
 ##### 0.0.1
 first commit
 
-##### 0.0.2 - unreleased
+##### 0.0.2
+* change error output
+* node version is strict
+
+##### 0.0.3 - unreleased
 ...
