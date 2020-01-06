@@ -78,5 +78,8 @@ first commit
 * change error output
 * node version is strict
 
-##### 0.0.3 - unreleased
+##### 0.0.3
+* update deps
+
+##### 0.0.4 - unreleased
 ...
