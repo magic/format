@@ -147,6 +147,8 @@ const init = async () => {
   if (changedFiles.length) {
     log.annotate('files that need formatting:')
     log.info(changedFiles.join('\n'))
+  } else {
+    log.success('no changes needed')
   }
 }
 
