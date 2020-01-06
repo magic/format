@@ -60,13 +60,13 @@ this both explains to everyone that your app has this dependencies
 as well as keeping your bash free of clutter
 
 ```bash
-  npm i -g @magic/format
+npm i -g @magic/format
 
-  // check formatting using prettier but do not write
-  f
+// check formatting using prettier but do not write
+f
 
-  // format and overwrite files using prettier
-  f -w
+// format and overwrite files using prettier
+f -w
 ```
 
 #### Changelog
