@@ -145,10 +145,10 @@ const init = async () => {
   changedFiles = changedFiles.filter(a => a)
 
   if (changedFiles.length) {
-    log.annotate('files that need formatting:')
+    log.annotate('format: files that need formatting:')
     log.info(changedFiles.join('\n'))
   } else {
-    log.success('no changes needed')
+    log.success('format:', 'no changes needed')
   }
 }
 
