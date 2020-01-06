@@ -1,8 +1,8 @@
 export default {
   ROOT: 'docsrc',
   PUBLIC: 'docs',
-  WEB_ROOT: '/test/',
-  URL: 'magic.github.io/test',
+  WEB_ROOT: '/format/',
+  URL: 'magic.github.io/format',
   THEME: 'docs',
   HOIST: ['Gdpr', 'LightSwitch'],
 }
