@@ -2,7 +2,7 @@ import is from '@magic/types'
 
 import { config } from '../src/defaultConfig.mjs'
 
-// do not change this object!
+// think before changing this object!
 const expected = {
   semi: false,
   printWidth: 100,
