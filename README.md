@@ -85,4 +85,7 @@ first commit
 * update info messages
 
 ##### 0.0.5 - unreleased
+update dependencies
+
+##### 0.0.6 - unreleased
 ...
