@@ -84,8 +84,9 @@ first commit
 ##### 0.0.4
 * update info messages
 
-##### 0.0.5 - unreleased
-update dependencies
+##### 0.0.5
+* update dependencies
+* messages now being logged from bin.mjs, making src/index.mjs return a list of changedFiles instead.
 
 ##### 0.0.6 - unreleased
 ...
