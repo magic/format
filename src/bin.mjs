@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import { cli } from '@magic/cli'
+import cli from '@magic/cli'
+import log from '@magic/log'
 
 import format from './index.mjs'
 
@@ -32,4 +33,18 @@ f -w  - overwrite files in place
   },
 })
 
-format(args)
+const changedFiles = format(args)
+
+if (changedFiles.length) {
+  log.info('format:')
+
+  let title = 'files that need formatting:'
+  if (args.write) {
+    title = 'changed files:'
+  }
+
+  log.annotate(title)
+  log.warn(changedFiles.join('\n'))
+} else {
+  log.success('format', 'no changes needed')
+}

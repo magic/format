@@ -3,7 +3,6 @@ import path from 'path'
 import prettier from 'prettier'
 
 import fs from '@magic/fs'
-import log from '@magic/log'
 import is from '@magic/types'
 
 import { findFiles } from './findFiles.mjs'
@@ -80,21 +79,7 @@ export const format = async args => {
     }),
   )
 
-  changedFiles = changedFiles.filter(a => a)
-
-  log.info('format:')
-
-  if (changedFiles.length) {
-    let title = 'files that need formatting:'
-    if (args.write) {
-      title = 'changed files:'
-    }
-
-    log.annotate(title)
-    log.warn(changedFiles.join('\n'))
-  } else {
-    log.success('no changes needed')
-  }
+  return changedFiles.filter(a => a)
 }
 
 export default format
