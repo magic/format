@@ -33,18 +33,22 @@ f -w  - overwrite files in place
   },
 })
 
-const changedFiles = format(args)
+const run = async () => {
+  const changedFiles = await format(args)
 
-if (changedFiles.length) {
-  log.info('format:')
+  if (changedFiles.length) {
+    log.info('format:')
 
-  let title = 'files that need formatting:'
-  if (args.write) {
-    title = 'changed files:'
+    let title = 'files that need formatting:'
+    if (args.write) {
+      title = 'changed files:'
+    }
+
+    log.annotate(title)
+    log.warn(changedFiles.join('\n'))
+  } else {
+    log.success('format', 'no changes needed')
   }
-
-  log.annotate(title)
-  log.warn(changedFiles.join('\n'))
-} else {
-  log.success('format', 'no changes needed')
 }
+
+run()
