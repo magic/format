@@ -11,6 +11,7 @@ const { args } = cli({
     ['--exclude', '--e', '-e'],
     ['--file-types', '--fileTypes', '-f'],
     ['--config', '--conf', '-c'],
+    ['--silent', '-s'],
   ],
   default: {
     '--list-different': [],
@@ -25,6 +26,7 @@ const { args } = cli({
       '--file-types': 'file types to format.',
       '--conf': 'path to config file',
       '--exclude': 'directories and files to exclude.',
+      '--silent': 'do not log if no files got changed.',
     },
     example: `
 f     - only --list-different files
@@ -47,7 +49,9 @@ const run = async () => {
     log.annotate(title)
     log.warn(changedFiles.join('\n'))
   } else {
-    log.success('format', 'no changes needed')
+    if (!args.silent) {
+      log.success('format', 'no changes needed')
+    }
   }
 }
 
