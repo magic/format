@@ -79,16 +79,20 @@ first commit
 * node version is strict
 
 ##### 0.0.3
-* update deps
+update deps
 
 ##### 0.0.4
-* update info messages
+update info messages
 
 ##### 0.0.5
-* update dependencies
+update dependencies
 
 ##### 0.0.6
-* messages now being logged from bin.mjs, making src/index.mjs return a list of changedFiles instead.
+messages now being logged from bin.mjs, making src/index.mjs return a list of changedFiles instead.
 
-##### 0.0.7 - unreleased
+##### 0.0.7
+* cli script awaits format before displaying information
+* add --silent option to suppress info if nothing got changed
+
+##### 0.0.8 - unreleased
 ...
