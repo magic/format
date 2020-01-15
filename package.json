@@ -37,11 +37,11 @@
     "url": "https://github.com/magic/test/issues"
   },
   "dependencies": {
-    "@magic/cli": "0.0.16",
+    "@magic/cli": "0.0.17",
     "@magic/deep": "0.1.2",
     "@magic/fs": "0.0.2",
     "@magic/log": "0.1.3",
-    "@magic/types": "0.1.7",
+    "@magic/types": "0.1.9",
     "prettier": "1.19.1"
   },
   "devDependencies": {
@@ -51,7 +51,7 @@
     "@magic-modules/pre": "0.0.2",
     "@magic-themes/docs": "0.0.3",
     "@magic/core": "0.0.19",
-    "@magic/test": "0.1.29"
+    "@magic/test": "0.1.32"
   },
   "contributors": [
     {
