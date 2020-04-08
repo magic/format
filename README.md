@@ -94,5 +94,8 @@ messages now being logged from bin.mjs, making src/index.mjs return a list of ch
 * cli script awaits format before displaying information
 * add --silent option to suppress info if nothing got changed
 
-##### 0.0.8 - unreleased
+##### 0.0.8
+update dependencies
+
+##### 0.0.9 - unreleased
 ...
