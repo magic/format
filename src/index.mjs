@@ -51,7 +51,7 @@ export const format = async args => {
     }
   }
 
-  const confExists = await fs.exists(configPath)
+  const confExists = configPath && (await fs.exists(configPath))
 
   if (!confExists) {
     const confFile = path.join('src', 'defaultConfig.mjs')
