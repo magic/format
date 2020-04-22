@@ -97,5 +97,8 @@ messages now being logged from bin.mjs, making src/index.mjs return a list of ch
 ##### 0.0.8
 update dependencies
 
-##### 0.0.9 - unreleased
+##### 0.0.9
+update prettier
+
+##### 0.0.10 - unreleased
 ...
