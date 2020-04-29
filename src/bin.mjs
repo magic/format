@@ -19,14 +19,14 @@ const { args } = cli({
     '--exclude': ['node_modules', '.nyc_output'],
   },
   help: {
-    name: '@magic/test f',
+    name: '@magic/format',
     header: 'format js code using prettier',
     options: {
       '--write': 'overwrite files in place',
       '--file-types': 'file types to format.',
       '--conf': 'path to config file',
-      '--exclude': 'directories and files to exclude.',
-      '--silent': 'do not log if no files got changed.',
+      '--exclude': 'paths to exclude.',
+      '--silent': 'only log changes',
     },
     example: `
 f     - only --list-different files
