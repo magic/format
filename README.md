@@ -100,5 +100,8 @@ update dependencies
 ##### 0.0.9
 update prettier
 
-##### 0.0.10 - unreleased
+##### 0.0.10
+update dependencies
+
+##### 0.0.11 - unreleased
 ...
