@@ -103,5 +103,8 @@ update prettier
 ##### 0.0.10
 update dependencies
 
-##### 0.0.11 - unreleased
+##### 0.0.11
+bump required node version to 14.2.0
+
+##### 0.0.12 - unreleased
 ...
