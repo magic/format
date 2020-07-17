@@ -3,7 +3,7 @@ export const View = state => [
 
   state.description.map(d => p(d)),
 
-  GitBadges('magic/format'),
+  GitBadges('@magic/format'),
 
   h2({ id: 'install' }, 'install'),
   p('be in a nodejs project.'),
