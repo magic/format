@@ -107,7 +107,7 @@ update dependencies
 bump required node version to 14.2.0
 
 ##### 0.0.12 
-do not error if .gitignore does not exist
+* do not error if .gitignore does not exist
 
 ##### 0.0.13 - unreleased
 ...
