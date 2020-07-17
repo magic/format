@@ -4,7 +4,7 @@ export const state = {
 
   logotext: '@magic/format',
   menu: [
-    { to: '-install', text: 'install' },
+    { to: '#install', text: 'install' },
     {
       to: '/#usage',
       text: 'usage',
