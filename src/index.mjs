@@ -6,6 +6,7 @@ import fs from '@magic/fs'
 import is from '@magic/types'
 
 import { findFiles } from './findFiles.mjs'
+import { loadConfig } from './loadConfig.mjs'
 
 const cwd = process.cwd()
 
@@ -45,31 +46,7 @@ export const format = async args => {
 
   const files = await findFiles({ include, exclude, fileTypes })
 
-  const pkgContent = await fs.readFile(path.join(cwd, 'package.json'), 'utf8')
-  const { name } = JSON.parse(pkgContent)
-
-  let configPath = ''
-
-  if (args.config) {
-    configPath = args.config[0]
-
-    if (!path.isAbsolute(configPath)) {
-      configPath = path.join(cwd, configPath)
-    }
-  }
-
-  const confExists = configPath && (await fs.exists(configPath))
-
-  if (!confExists) {
-    const confFile = path.join('src', 'defaultConfig.mjs')
-    if (name === '@magic/format') {
-      configPath = path.join(cwd, confFile)
-    } else {
-      configPath = path.join(cwd, 'node_modules', '@magic', 'format', confFile)
-    }
-  }
-
-  const { config } = await import(configPath)
+  const config = await loadConfig()
 
   let changedFiles = await Promise.all(
     files.map(async file => {
