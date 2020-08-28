@@ -112,5 +112,8 @@ bump required node version to 14.2.0
 ##### 0.0.13
 * npm i -g @magic/format now is actually usable.
 
-##### 0.0.14 - unreleased
+##### 0.0.14 
+update dependencies
+
+##### 0.0.15 - unreleased
 ...
