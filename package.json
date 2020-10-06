@@ -39,7 +39,7 @@
   "dependencies": {
     "@magic/cli": "0.0.29",
     "@magic/deep": "0.1.4",
-    "@magic/fs": "0.0.7",
+    "@magic/fs": "0.0.8",
     "@magic/log": "0.1.6",
     "@magic/types": "0.1.13",
     "prettier": "2.1.2"
@@ -51,7 +51,7 @@
     "@magic-modules/pre": "0.0.9",
     "@magic-themes/docs": "0.0.11",
     "@magic/core": "0.0.90",
-    "@magic/test": "0.1.54"
+    "@magic/test": "0.1.55"
   },
   "contributors": [
     {
