@@ -133,5 +133,9 @@ update dependencies
 ##### 0.0.20
 update dependencies
 
-##### 0.0.21 - unreleased
+##### 0.0.21
+* bump required node version to 14.15.4
+* update dependencies
+
+##### 0.0.22 - unreleased
 ...
