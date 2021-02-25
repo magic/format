@@ -41,7 +41,7 @@
     "@magic/deep": "0.1.5",
     "@magic/fs": "0.0.11",
     "@magic/log": "0.1.8",
-    "@magic/types": "0.1.14",
+    "@magic/types": "0.1.15",
     "prettier": "2.2.1"
   },
   "devDependencies": {
