@@ -140,5 +140,8 @@ update dependencies
 ##### 0.0.22
 update dependencies (@magic/fs)
 
-##### 0.0.23 - unreleased
+##### 0.0.23
+update dependencies
+
+##### 0.0.24 - unreleased
 ...
