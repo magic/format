@@ -9,11 +9,8 @@ export const state = {
       to: '/#usage',
       text: 'usage',
       items: [
-        { to: '-js', text: 'js api' },
         { to: '-cli', text: 'cli' },
-        { to: '-global', text: 'npm i -g' },
       ],
     },
-    { to: '/#changelog', text: 'changelog' },
   ],
 }
