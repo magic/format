@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@magic/cli": "0.0.31",
-    "@magic/deep": "0.1.5",
+    "@magic/deep": "0.1.6",
     "@magic/fs": "0.0.11",
     "@magic/log": "0.1.8",
     "@magic/types": "0.1.14",
