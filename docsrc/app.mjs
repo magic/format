@@ -8,9 +8,7 @@ export const state = {
     {
       to: '/#usage',
       text: 'usage',
-      items: [
-        { to: '-cli', text: 'cli' },
-      ],
+      items: [{ to: '-cli', text: 'cli' }],
     },
   ],
 }
