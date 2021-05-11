@@ -43,7 +43,7 @@
     "@magic/fs": "0.0.13",
     "@magic/log": "0.1.9",
     "@magic/types": "0.1.15",
-    "prettier": "2.2.1"
+    "prettier": "2.3.0"
   },
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.11",
