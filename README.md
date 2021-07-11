@@ -147,7 +147,11 @@ update dependencies
 update dependencies
 
 ##### 0.0.25 
-update dependencies (@magic/fs)
+* update dependencies (@magic/fs)
+* ** broken npm cache **
 
-##### 0.0.26 - unreleased
-...
+##### 0.0.26
+release to refresh npm cache
+
+##### 0.0.27 - unreleased
+
