@@ -106,25 +106,25 @@ update dependencies
 ##### 0.0.11
 bump required node version to 14.2.0
 
-##### 0.0.12 
+##### 0.0.12
 * do not error if .gitignore does not exist
 
 ##### 0.0.13
 * npm i -g @magic/format now is actually usable.
 
-##### 0.0.14 
+##### 0.0.14
 update dependencies
 
-##### 0.0.15 
+##### 0.0.15
 update dependencies
 
-##### 0.0.16 
+##### 0.0.16
 update dependencies
 
-##### 0.0.17 
+##### 0.0.17
 update dependencies
 
-##### 0.0.18 
+##### 0.0.18
 update dependencies
 
 ##### 0.0.19
@@ -146,7 +146,7 @@ update dependencies
 ##### 0.0.24
 update dependencies
 
-##### 0.0.25 
+##### 0.0.25
 * update dependencies (@magic/fs)
 * ** broken npm cache **
 
