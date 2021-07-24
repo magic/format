@@ -51,8 +51,8 @@
     "@magic-modules/no-spy": "0.0.6",
     "@magic-modules/pre": "0.0.10",
     "@magic-themes/docs": "0.0.13",
-    "@magic/core": "0.0.127",
-    "@magic/test": "0.1.72"
+    "@magic/core": "0.0.128",
+    "@magic/test": "0.1.73"
   },
   "contributors": [
     {
