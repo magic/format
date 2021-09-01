@@ -159,5 +159,8 @@ update @magic/types and intermediate deps to avoid circular dependency
 ##### 0.0.28
 update depdendencies
 
-##### 0.0.29 - unreleased
+##### 0.0.29
+update dependencies
+
+##### 0.0.30 - unreleased
 ...
