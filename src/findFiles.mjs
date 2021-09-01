@@ -3,6 +3,10 @@ import path from 'path'
 import deep from '@magic/deep'
 import fs from '@magic/fs'
 
+const shouldIgnore = ({ dir, exclude, file }) => {
+  return !exclude.some(e => file === e || path.join(dir, file).endsWith(path.join(e, file)))
+}
+
 export const findFiles = async ({ include, exclude, fileTypes }) => {
   const files = await Promise.all(
     include.map(async dir => {
@@ -16,7 +20,7 @@ export const findFiles = async ({ include, exclude, fileTypes }) => {
         let dirContent = await fs.readdir(dir)
         dirContent = dirContent
           .filter(file => !file.startsWith('.'))
-          .filter(file => !exclude.some(e => file === e || `${file}/`.startsWith(`${e}/`)))
+          .filter(file => shouldIgnore({ dir, exclude, file }))
           .filter(file => !file.includes('.') || fileTypes.some(ft => file.endsWith(ft)))
 
         files = await Promise.all(
