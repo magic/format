@@ -162,5 +162,8 @@ update depdendencies
 ##### 0.0.29
 update dependencies
 
-##### 0.0.30 - unreleased
+##### 0.0.30 
+update dependencies
+
+##### 0.0.31 - unreleased
 ...
