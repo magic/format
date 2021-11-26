@@ -15,7 +15,7 @@ const { args } = cli({
   ],
   default: {
     '--list-different': [],
-    '--file-types': ['mjs', 'json'],
+    '--file-types': ['mjs', 'js', 'json'],
     '--exclude': ['node_modules', '.nyc_output'],
   },
   help: {
