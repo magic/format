@@ -168,5 +168,9 @@ update dependencies
 ##### 0.0.31
 update dependencies
 
-##### 0.0.32 - unreleased
+##### 0.0.32
+* format .js files by default
+* update dependencies
+
+##### 0.0.33 - unreleased
 ...
