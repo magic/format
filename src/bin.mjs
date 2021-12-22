@@ -18,6 +18,7 @@ const { args } = cli({
     '--file-types': ['mjs', 'js', 'json'],
     '--exclude': ['node_modules', '.nyc_output'],
   },
+  single: ['--config', '--silent'],
   help: {
     name: '@magic/format',
     header: 'format js code using prettier',
