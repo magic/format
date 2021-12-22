@@ -162,7 +162,7 @@ update depdendencies
 ##### 0.0.29
 update dependencies
 
-##### 0.0.30 
+##### 0.0.30
 update dependencies
 
 ##### 0.0.31
@@ -175,5 +175,10 @@ update dependencies
 ##### 0.0.33
 * update dependencies
 
-##### 0.0.34 - unreleased
+##### 0.0.34
+* less runtime errors
+* more tests
+* update dependencies
+
+##### 0.0.35 - unreleased
 ...
