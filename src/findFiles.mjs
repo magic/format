@@ -2,12 +2,21 @@ import path from 'path'
 
 import deep from '@magic/deep'
 import fs from '@magic/fs'
+import is from '@magic/types'
 
 const shouldIgnore = ({ dir, exclude, file }) => {
   return !exclude.some(e => file === e || path.join(dir, file).endsWith(path.join(e, file)))
 }
 
-export const findFiles = async ({ include, exclude, fileTypes }) => {
+export const findFiles = async ({ include = [], exclude = [], fileTypes = [] }) => {
+  if (is.string(include)) {
+    include = [ include ]
+  }
+
+  if (is.string(exclude)) {
+    exclude = [ exclude ]
+  }
+
   const files = await Promise.all(
     include.map(async dir => {
       if (dir.startsWith('.')) {
