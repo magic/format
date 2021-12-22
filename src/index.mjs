@@ -2,6 +2,7 @@ import path from 'path'
 
 import prettier from 'prettier'
 
+import deep from '@magic/deep'
 import fs from '@magic/fs'
 import is from '@magic/types'
 
@@ -13,7 +14,11 @@ const cwd = process.cwd()
 export const format = async args => {
   let include = ''
   if (args.include) {
-    include = args.include
+    if (is.string(args.include)) {
+      include = [args.include]
+    } else {
+      include = args.include
+    }
   } else {
     include = [cwd]
   }
@@ -37,7 +42,7 @@ export const format = async args => {
     exclude = ['node_modules', 'coverage']
   }
 
-  exclude = Array.from(new Set(exclude))
+  exclude = Array.from(new Set(deep.flatten(exclude)))
 
   let fileTypes = ['js', 'json']
   if (args.fileTypes) {
@@ -46,7 +51,7 @@ export const format = async args => {
 
   const files = await findFiles({ include, exclude, fileTypes })
 
-  const config = await loadConfig()
+  const config = await loadConfig(cwd, args)
 
   let changedFiles = await Promise.all(
     files.map(async file => {
