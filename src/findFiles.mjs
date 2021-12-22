@@ -10,11 +10,11 @@ const shouldIgnore = ({ dir, exclude, file }) => {
 
 export const findFiles = async ({ include = [], exclude = [], fileTypes = [] }) => {
   if (is.string(include)) {
-    include = [ include ]
+    include = [include]
   }
 
   if (is.string(exclude)) {
-    exclude = [ exclude ]
+    exclude = [exclude]
   }
 
   const files = await Promise.all(
