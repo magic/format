@@ -4,13 +4,13 @@ import fs from '@magic/fs'
 
 import { config as defaultConfig } from './defaultConfig.mjs'
 
-export const loadConfig = async cwd => {
+export const loadConfig = async (cwd, args) => {
   try {
     let configPath = ''
     let exists = false
 
     if (args.config) {
-      const configPath = args.config[0]
+      const configPath = args.config
 
       if (!path.isAbsolute(configPath)) {
         configPath = path.join(cwd, configPath)
