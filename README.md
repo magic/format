@@ -180,5 +180,8 @@ update dependencies
 * more tests
 * update dependencies
 
-##### 0.0.35 - unreleased
+##### 0.0.35
+update dependencies
+
+##### 0.0.36 - unreleased
 ...
