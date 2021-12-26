@@ -12,7 +12,4 @@ export const spec = {
   arrowParens: is.string,
 }
 
-const libTests = version.lib(config, spec)
-const specTests = version.spec(spec, config)
-
-export default [...libTests, ...specTests]
+export default version(config, spec)
