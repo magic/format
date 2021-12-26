@@ -38,11 +38,11 @@
     "url": "https://github.com/magic/format/issues"
   },
   "dependencies": {
-    "@magic/cli": "0.0.36",
-    "@magic/deep": "0.1.9",
-    "@magic/fs": "0.0.20",
-    "@magic/log": "0.1.11",
-    "@magic/types": "0.1.17",
+    "@magic/cli": "0.0.37",
+    "@magic/deep": "0.1.10",
+    "@magic/fs": "0.0.21",
+    "@magic/log": "0.1.12",
+    "@magic/types": "0.1.18",
     "prettier": "2.5.1"
   },
   "devDependencies": {
