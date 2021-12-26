@@ -52,7 +52,7 @@
     "@magic-modules/pre": "0.0.11",
     "@magic-themes/docs": "0.0.14",
     "@magic/core": "0.0.133",
-    "@magic/test": "0.2.0"
+    "@magic/test": "0.2.2"
   },
   "contributors": [
     {
