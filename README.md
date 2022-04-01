@@ -193,7 +193,10 @@ update dependencies
 update dependencies
 
 ##### 0.0.39
-update dependencies
+* update dependencies
+* make sure errors happening whilst formatting files
+  do not lead to data loss in other files
+  that are being written at that same point in time
 
 ##### 0.0.40 - unreleased
 ...
