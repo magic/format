@@ -5,6 +5,7 @@ import prettier from 'prettier'
 import deep from '@magic/deep'
 import fs from '@magic/fs'
 import is from '@magic/types'
+import log from '@magic/log'
 
 import { findFiles } from './findFiles.mjs'
 import { loadConfig } from './loadConfig.mjs'
@@ -55,15 +56,19 @@ export const format = async args => {
 
   let changedFiles = await Promise.all(
     files.map(async file => {
-      const content = await fs.readFile(file, 'utf8')
+      try {
+        const content = await fs.readFile(file, 'utf8')
 
-      const changed = prettier.format(content, { ...config, filepath: file })
+        const changed = prettier.format(content, { ...config, filepath: file })
 
-      if (content !== changed) {
-        if (args.write) {
-          await fs.writeFile(file, changed)
+        if (content !== changed) {
+          if (args.write) {
+            await fs.writeFile(file, changed)
+          }
+          return file
         }
-        return file
+      } catch (e) {
+        log.error(e.code, e.message)
       }
     }),
   )
