@@ -198,5 +198,8 @@ update dependencies
   do not lead to data loss in other files
   that are being written at that same point in time
 
-##### 0.0.40 - unreleased
+##### 0.0.40
+update dependencies
+
+##### 0.0.41 - unreleased
 ...
