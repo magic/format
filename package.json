@@ -43,7 +43,7 @@
     "@magic/fs": "0.0.27",
     "@magic/log": "0.1.17",
     "@magic/types": "0.1.22",
-    "prettier": "2.6.2"
+    "prettier": "2.7.1"
   },
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.12",
@@ -51,8 +51,8 @@
     "@magic-modules/no-spy": "0.0.7",
     "@magic-modules/pre": "0.0.11",
     "@magic-themes/docs": "0.0.14",
-    "@magic/core": "0.0.142",
-    "@magic/test": "0.2.12"
+    "@magic/core": "0.0.143",
+    "@magic/test": "0.2.14"
   },
   "contributors": [
     {
