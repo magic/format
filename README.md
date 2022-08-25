@@ -210,5 +210,8 @@ update dependencies
 ##### 0.0.43
 update dependencies
 
-##### 0.0.44 - unreleased
+##### 0.0.44
+add svelte and astro support (prettier-plugin-svelte and prettier-plugin-astro)
+
+##### 0.0.45 - unreleased
 ...
