@@ -211,7 +211,9 @@ update dependencies
 update dependencies
 
 ##### 0.0.44
-add svelte and astro support (prettier-plugin-svelte and prettier-plugin-astro)
+* add svelte and astro support (prettier-plugin-svelte and prettier-plugin-astro)
+* support more filetypes as default:
+  `mjs, js, ts, json, jsx, tsx, svelte, astro, markdown, md`
 
 ##### 0.0.45 - unreleased
 ...
