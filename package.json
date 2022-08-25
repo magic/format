@@ -43,7 +43,9 @@
     "@magic/fs": "0.0.27",
     "@magic/log": "0.1.17",
     "@magic/types": "0.1.22",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "prettier-plugin-astro": "^0.5.3",
+    "prettier-plugin-svelte": "^2.7.0"
   },
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.12",
