@@ -24,19 +24,21 @@ run prettier and format your code.
 [snyk-image]: https://snyk.io/test/github/magic/format/badge.svg
 [snyk-url]: https://snyk.io/test/github/magic/format
 
-* [install](#install)
-* [usage](#usage)
-  * [npm scripts](#npm-scripts)
-  * [cli](#usage-cli)
-
+- [install](#install)
+- [usage](#usage)
+  - [npm scripts](#npm-scripts)
+  - [cli](#usage-cli)
 
 #### <a name="install"></a>getting started
+
 be in a nodejs project.
+
 ```bash
 npm i --save-dev @magic/format
 ```
 
 #### <a name="npm-scripts"></a>npm run scripts
+
 edit package.json:
 
 ```json
@@ -53,6 +55,7 @@ edit package.json:
 `npm run format:check` will list the files that would be changed.
 
 ##### <a name="usage-cli"></a>cli
+
 you can install this library globally,
 but the recommendation is to add the dependency and scripts to the package.json file.
 
@@ -72,148 +75,193 @@ f -w
 #### Changelog
 
 ##### 0.0.1
+
 first commit
 
 ##### 0.0.2
-* change error output
-* node version is strict
+
+- change error output
+- node version is strict
 
 ##### 0.0.3
+
 update deps
 
 ##### 0.0.4
+
 update info messages
 
 ##### 0.0.5
+
 update dependencies
 
 ##### 0.0.6
+
 messages now being logged from bin.mjs, making src/index.mjs return a list of changedFiles instead.
 
 ##### 0.0.7
-* cli script awaits format before displaying information
-* add --silent option to suppress info if nothing got changed
+
+- cli script awaits format before displaying information
+- add --silent option to suppress info if nothing got changed
 
 ##### 0.0.8
+
 update dependencies
 
 ##### 0.0.9
+
 update prettier
 
 ##### 0.0.10
+
 update dependencies
 
 ##### 0.0.11
+
 bump required node version to 14.2.0
 
 ##### 0.0.12
-* do not error if .gitignore does not exist
+
+- do not error if .gitignore does not exist
 
 ##### 0.0.13
-* npm i -g @magic/format now is actually usable.
+
+- npm i -g @magic/format now is actually usable.
 
 ##### 0.0.14
+
 update dependencies
 
 ##### 0.0.15
+
 update dependencies
 
 ##### 0.0.16
+
 update dependencies
 
 ##### 0.0.17
+
 update dependencies
 
 ##### 0.0.18
+
 update dependencies
 
 ##### 0.0.19
+
 update dependencies
 
 ##### 0.0.20
+
 update dependencies
 
 ##### 0.0.21
-* bump required node version to 14.15.4
-* update dependencies
+
+- bump required node version to 14.15.4
+- update dependencies
 
 ##### 0.0.22
+
 update dependencies (@magic/fs)
 
 ##### 0.0.23
+
 update dependencies
 
 ##### 0.0.24
+
 update dependencies
 
 ##### 0.0.25
-* update dependencies (@magic/fs)
-* ** broken npm cache **
+
+- update dependencies (@magic/fs)
+- ** broken npm cache **
 
 ##### 0.0.26
+
 release to refresh npm cache
 
 ##### 0.0.27
+
 update @magic/types and intermediate deps to avoid circular dependency
 
 ##### 0.0.28
+
 update depdendencies
 
 ##### 0.0.29
+
 update dependencies
 
 ##### 0.0.30
+
 update dependencies
 
 ##### 0.0.31
+
 update dependencies
 
 ##### 0.0.32
-* format .js files by default
-* update dependencies
+
+- format .js files by default
+- update dependencies
 
 ##### 0.0.33
-* update dependencies
+
+- update dependencies
 
 ##### 0.0.34
-* less runtime errors
-* more tests
-* update dependencies
+
+- less runtime errors
+- more tests
+- update dependencies
 
 ##### 0.0.35
+
 update dependencies
 
 ##### 0.0.36
+
 update dependencies
 
 ##### 0.0.37
+
 update dependencies
 
 ##### 0.0.38
+
 update dependencies
 
 ##### 0.0.39
-* update dependencies
-* make sure errors happening whilst formatting files
+
+- update dependencies
+- make sure errors happening whilst formatting files
   do not lead to data loss in other files
   that are being written at that same point in time
 
 ##### 0.0.40
+
 update dependencies
 
 ##### 0.0.41
+
 update dependencies
 
 ##### 0.0.42
+
 update dependencies
 
 ##### 0.0.43
+
 update dependencies
 
 ##### 0.0.44
-* add svelte and astro support (prettier-plugin-svelte and prettier-plugin-astro)
-* support more filetypes as default:
+
+- add svelte and astro support (prettier-plugin-svelte and prettier-plugin-astro)
+- support more filetypes as default:
   `mjs, js, ts, json, jsx, tsx, svelte, astro, markdown, md`
 
 ##### 0.0.45 - unreleased
+
 ...
