@@ -262,6 +262,10 @@ update dependencies
 - support more filetypes as default:
   `mjs, js, ts, json, jsx, tsx, svelte, astro, markdown, md`
 
-##### 0.0.45 - unreleased
+##### 0.0.45
+
+add `css, scss, sass` filetypes
+
+##### 0.0.46 - unreleased
 
 ...
