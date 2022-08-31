@@ -5,6 +5,22 @@ import log from '@magic/log'
 
 import format from './index.mjs'
 
+const fileTypes = [
+  'mjs',
+  'js',
+  'ts',
+  'json',
+  'jsx',
+  'tsx',
+  'svelte',
+  'astro',
+  'markdown',
+  'md',
+  'css',
+  'scss',
+  'sass',
+]
+
 const { args } = cli({
   options: [
     ['--write', '--w', '-w'],
@@ -15,7 +31,7 @@ const { args } = cli({
   ],
   default: {
     '--list-different': [],
-    '--file-types': ['mjs', 'js', 'ts', 'json', 'jsx', 'tsx', 'svelte', 'astro', 'markdown', 'md'],
+    '--file-types': fileTypes,
     '--exclude': ['node_modules', '.nyc_output'],
   },
   single: ['--config', '--silent'],
