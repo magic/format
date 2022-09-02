@@ -52,8 +52,10 @@ f -w  - overwrite files in place
   },
 })
 
+let changedFiles
+
 const run = async () => {
-  const changedFiles = await format(args)
+  changedFiles = await format(args)
 
   if (changedFiles.length) {
     log.info('format:')
@@ -70,6 +72,17 @@ const run = async () => {
       log.success('format', 'no changes needed')
     }
   }
+
+  process.exit()
 }
 
 run()
+
+process.on('SIGINT', async code => {
+  if (typeof changedFiles !== undefined) {
+    log.warn('About to exit', 'waiting for files to write...')
+    await changedFiles
+  }
+
+  process.exit()
+})
