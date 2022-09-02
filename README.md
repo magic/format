@@ -266,6 +266,10 @@ update dependencies
 
 add `css, scss, sass` filetypes
 
-##### 0.0.46 - unreleased
+##### 0.0.46
+
+catch SIGINT and wait for files to write before executing process.exit()
+
+##### 0.0.47 - unreleased
 
 ...
