@@ -272,7 +272,8 @@ catch SIGINT and wait for files to write before executing process.exit()
 
 ##### 0.0.47
 
-add pug and gltf to default --file-types
+- add pug and gltf to default --file-types
+- update dependencies
 
 ##### 0.0.48 - unreleased
 
