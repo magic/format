@@ -19,6 +19,8 @@ const fileTypes = [
   'css',
   'scss',
   'sass',
+  'gltf',
+  'pug',
 ]
 
 const { args } = cli({
