@@ -270,6 +270,10 @@ add `css, scss, sass` filetypes
 
 catch SIGINT and wait for files to write before executing process.exit()
 
-##### 0.0.47 - unreleased
+##### 0.0.47
+
+add pug and gltf to default --file-types
+
+##### 0.0.48 - unreleased
 
 ...
