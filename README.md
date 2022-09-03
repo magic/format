@@ -275,6 +275,10 @@ catch SIGINT and wait for files to write before executing process.exit()
 - add pug and gltf to default --file-types
 - update dependencies
 
-##### 0.0.48 - unreleased
+##### 0.0.48
+
+actually distribute @prettier/plugin-pug
+
+##### 0.0.49 - unreleased
 
 ...
