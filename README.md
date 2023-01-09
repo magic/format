@@ -279,6 +279,10 @@ catch SIGINT and wait for files to write before executing process.exit()
 
 actually distribute @prettier/plugin-pug
 
-##### 0.0.49 - unreleased
+##### 0.0.49
 
+* update dependencies
+* move all prettier plugins to optionalDependencies, we can install them where needed
+
+##### 0.0.50 - unreleased
 ...
