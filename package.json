@@ -43,12 +43,55 @@
     "@magic/fs": "0.0.27",
     "@magic/log": "0.1.17",
     "@magic/types": "0.1.22",
-    "prettier": "2.8.2"
+    "prettier": "2.8.4"
   },
-  "optionalDependencies": {
-    "@prettier/plugin-pug": "2.3.0",
-    "prettier-plugin-astro": "0.7.2",
+  "peerDependencies": {
+    "@prettier/plugin-haml": "0.1.0",
+    "@prettier/plugin-lua": "0.0.1",
+    "@prettier/plugin-php": "0.19.3",
+    "@prettier/plugin-pug": "2.4.1",
+    "@prettier/plugin-python": "0.0.1",
+    "@prettier/plugin-ruby": "3.2.2",
+    "@prettier/plugin-xml": "2.2.0",
+    "@voltiso/prettier-plugin-toml": "0.3.3",
+    "prettier-plugin-astro": "0.8.0",
+    "prettier-plugin-java": "2.0.0",
     "prettier-plugin-svelte": "2.9.0"
+  },
+  "peerDependenciesMeta": {
+    "@prettier/plugin-haml": {
+      "optional": true
+    },
+    "@prettier/plugin-lua": {
+      "optional": true
+    },
+    "@prettier/plugin-php": {
+      "optional": true
+    },
+    "@prettier/plugin-pug": {
+      "optional": true
+    },
+    "@prettier/plugin-python": {
+      "optional": true
+    },
+    "@prettier/plugin-ruby": {
+      "optional": true
+    },
+    "@prettier/plugin-xml": {
+      "optional": true
+    },
+    "@voltiso/prettier-plugin-toml": {
+      "optional": true
+    },
+    "prettier-plugin-astro": {
+      "optional": true
+    },
+    "prettier-plugin-java": {
+      "optional": true
+    },
+    "prettier-plugin-svelte": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.12",
@@ -56,7 +99,7 @@
     "@magic-modules/no-spy": "0.0.8",
     "@magic-modules/pre": "0.0.11",
     "@magic-themes/docs": "0.0.14",
-    "@magic/core": "0.0.144",
+    "@magic/core": "0.0.149",
     "@magic/test": "0.2.14"
   },
   "contributors": [
