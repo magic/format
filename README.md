@@ -281,8 +281,14 @@ actually distribute @prettier/plugin-pug
 
 ##### 0.0.49
 
-* update dependencies
-* move all prettier plugins to optionalDependencies, we can install them where needed
+- update dependencies
+- move all prettier plugins to optionalDependencies, we can install them where needed
 
-##### 0.0.50 - unreleased
+##### 0.0.50
+
+- update dependencies
+- add various prettier plugins as optional peerDependencies
+
+##### 0.0.51 - unreleased
+
 ...
