@@ -287,7 +287,7 @@ actually distribute @prettier/plugin-pug
 ##### 0.0.50
 
 - update dependencies
-- add various prettier plugins as optional peerDependencies
+- add various prettier plugins as optional peerDependencies, and check for them in the cli. if they exist, add their extensions to the prettier fileTypes
 
 ##### 0.0.51 - unreleased
 
