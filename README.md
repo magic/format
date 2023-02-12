@@ -72,6 +72,25 @@ f
 f -w
 ```
 
+##### <a name="usage-plugins"></a>prettier plugins
+
+@magic/format supports a number of prettier plugins out of the box as optional peerDependencies.
+Just install any of the following and prettier will start checking the appropriate files:
+
+- ##### ext: plugin
+- haml: @prettier/plugin-haml
+- lua: @prettier/plugin-lua
+- php: @prettier/plugin-php
+- pug: @prettier/plugin-pug
+- py: @prettier/plugin-python
+- rb: @prettier/plugin-ruby
+- gemspec: @prettier/plugin-ruby
+- xml: @prettier/plugin-xml
+- toml: @voltiso/prettier-plugin-toml
+- astro: prettier-plugin-astro
+- java: prettier-plugin-java
+- svelte: prettier-plugin-svelte
+
 #### Changelog
 
 ##### 0.0.1
@@ -288,6 +307,7 @@ actually distribute @prettier/plugin-pug
 
 - update dependencies
 - add various prettier plugins as optional peerDependencies, and check for them in the cli. if they exist, add their extensions to the prettier fileTypes
+- catch SIGTERM in addition to SIGINT. SIGKILL is uncatchable.
 
 ##### 0.0.51 - unreleased
 
