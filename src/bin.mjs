@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
+import path from 'node:path'
+
 import cli from '@magic/cli'
 import log from '@magic/log'
+import fs from '@magic/fs'
 
 import format from './index.mjs'
 
@@ -12,51 +15,74 @@ const fileTypes = [
   'json',
   'jsx',
   'tsx',
-  'svelte',
-  'astro',
   'markdown',
   'md',
   'css',
   'scss',
   'sass',
   'gltf',
-  'pug',
 ]
 
-const { args } = cli({
-  options: [
-    ['--write', '--w', '-w'],
-    ['--exclude', '--e', '-e'],
-    ['--file-types', '--fileTypes', '-f'],
-    ['--config', '--conf', '-c'],
-    ['--silent', '-s'],
-  ],
-  default: {
-    '--list-different': [],
-    '--file-types': fileTypes,
-    '--exclude': ['node_modules', '.nyc_output'],
-  },
-  single: ['--config', '--silent'],
-  help: {
-    name: '@magic/format',
-    header: 'format js code using prettier',
-    options: {
-      '--write': 'overwrite files in place',
-      '--file-types': 'file types to format.',
-      '--conf': 'path to config file',
-      '--exclude': 'paths to exclude.',
-      '--silent': 'only log changes',
-    },
-    example: `
-f     - only --list-different files
-f -w  - overwrite files in place
-`.trim(),
-  },
-})
+const optional = {
+  haml: ['@prettier', 'plugin-haml'],
+  lua: ['@prettier', 'plugin-lua'],
+  php: ['@prettier', 'plugin-php'],
+  pug: ['@prettier', 'plugin-pug'],
+  python: ['@prettier', 'plugin-python'],
+  ruby: ['@prettier', 'plugin-ruby'],
+  xml: ['@prettier', 'plugin-xml'],
+  toml: ['@voltiso', 'prettier-plugin-toml'],
+  java: ['prettier-plugin-java'],
+  astro: ['prettier-plugin-astro'],
+  svelte: ['prettier-plugin-svelte'],
+}
+
+const nodeModuleDir = path.join(process.cwd(), 'node_modules')
 
 let changedFiles
 
+const checkOptionalDependencies = async ([extension, pathParts]) => {
+  const exists = await fs.exists(path.join(nodeModuleDir, ...pathParts))
+
+  if (exists) {
+    fileTypes.push(extension)
+  }
+}
+
 const run = async () => {
+  await Promise.all(Object.entries(optional).map(checkOptionalDependencies))
+
+  const { args } = cli({
+    options: [
+      ['--write', '--w', '-w'],
+      ['--exclude', '--e', '-e'],
+      ['--file-types', '--fileTypes', '-f'],
+      ['--config', '--conf', '-c'],
+      ['--silent', '-s'],
+    ],
+    default: {
+      '--list-different': [],
+      '--file-types': fileTypes,
+      '--exclude': ['node_modules', '.nyc_output'],
+    },
+    single: ['--config', '--silent'],
+    help: {
+      name: '@magic/format',
+      header: 'format js code using prettier',
+      options: {
+        '--write': 'overwrite files in place',
+        '--file-types': 'file types to format.',
+        '--conf': 'path to config file',
+        '--exclude': 'paths to exclude.',
+        '--silent': 'only log changes',
+      },
+      example: `
+f     - only --list-different files
+f -w  - overwrite files in place
+`.trim(),
+    },
+  })
+
   changedFiles = await format(args)
 
   if (changedFiles.length) {
@@ -80,11 +106,15 @@ const run = async () => {
 
 run()
 
-process.on('SIGINT', async code => {
-  if (typeof changedFiles !== undefined) {
-    log.warn('About to exit', 'waiting for files to write...')
-    await changedFiles
-  }
+const signals = ['SIGINT', 'SIGTERM']
 
-  process.exit()
+signals.forEach(signal => {
+  process.on(signal, async code => {
+    if (typeof changedFiles !== undefined) {
+      log.warn('About to exit', 'waiting for files to write...')
+      await changedFiles
+    }
+
+    process.exit()
+  })
 })
