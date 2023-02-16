@@ -309,6 +309,10 @@ actually distribute @prettier/plugin-pug
 - add various prettier plugins as optional peerDependencies, and check for them in the cli. if they exist, add their extensions to the prettier fileTypes
 - catch SIGTERM in addition to SIGINT. SIGKILL is uncatchable.
 
-##### 0.0.51 - unreleased
+##### 0.0.51
+
+update dependencies
+
+##### 0.0.52 - unreleased
 
 ...
