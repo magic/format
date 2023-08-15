@@ -38,25 +38,25 @@
     "url": "https://github.com/magic/format/issues"
   },
   "dependencies": {
-    "@magic/cli": "0.0.44",
+    "@magic/cli": "0.0.46",
     "@magic/deep": "0.1.16",
     "@magic/fs": "0.0.28",
     "@magic/log": "0.1.18",
     "@magic/types": "0.1.23",
-    "prettier": "2.8.4"
+    "prettier": "3.0.1"
   },
   "peerDependencies": {
     "@prettier/plugin-haml": "0.1.0",
-    "@prettier/plugin-lua": "0.0.1",
-    "@prettier/plugin-php": "0.19.3",
-    "@prettier/plugin-pug": "2.4.1",
+    "@prettier/plugin-lua": "0.0.3",
+    "@prettier/plugin-php": "0.19.6",
+    "@prettier/plugin-pug": "3.0.0",
     "@prettier/plugin-python": "0.0.1",
-    "@prettier/plugin-ruby": "3.2.2",
-    "@prettier/plugin-xml": "2.2.0",
+    "@prettier/plugin-ruby": "4.0.2",
+    "@prettier/plugin-xml": "3.2.0",
     "@voltiso/prettier-plugin-toml": "0.3.3",
-    "prettier-plugin-astro": "0.8.0",
-    "prettier-plugin-java": "2.0.0",
-    "prettier-plugin-svelte": "2.9.0"
+    "prettier-plugin-astro": "0.11.0",
+    "prettier-plugin-java": "2.2.0",
+    "prettier-plugin-svelte": "3.0.3"
   },
   "peerDependenciesMeta": {
     "@prettier/plugin-haml": {
@@ -95,12 +95,12 @@
   },
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.12",
-    "@magic-modules/light-switch": "0.0.11",
-    "@magic-modules/no-spy": "0.0.8",
-    "@magic-modules/pre": "0.0.11",
-    "@magic-themes/docs": "0.0.14",
-    "@magic/core": "0.0.149",
-    "@magic/test": "0.2.15"
+    "@magic-modules/light-switch": "0.0.12",
+    "@magic-modules/no-spy": "0.0.9",
+    "@magic-modules/pre": "0.0.12",
+    "@magic-themes/docs": "0.0.15",
+    "@magic/core": "0.0.155",
+    "@magic/test": "0.2.18"
   },
   "contributors": [
     {
