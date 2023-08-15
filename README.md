@@ -313,6 +313,10 @@ actually distribute @prettier/plugin-pug
 
 update dependencies
 
-##### 0.0.52 - unreleased
+##### 0.0.52
+
+update dependencies
+
+##### 0.0.53 - unreleased
 
 ...
