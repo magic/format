@@ -58,9 +58,7 @@ export const format = async args => {
     files.map(async file => {
       try {
         const content = await fs.readFile(file, 'utf8')
-
-        const changed = prettier.format(content, { ...config, filepath: file })
-
+        const changed = await prettier.format(content, { ...config, filepath: file })
         if (content !== changed) {
           if (args.write) {
             await fs.writeFile(file, changed)
