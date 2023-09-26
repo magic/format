@@ -40,10 +40,10 @@
   "dependencies": {
     "@magic/cli": "0.0.46",
     "@magic/deep": "0.1.16",
-    "@magic/fs": "0.0.28",
+    "@magic/fs": "0.0.29",
     "@magic/log": "0.1.18",
     "@magic/types": "0.1.23",
-    "prettier": "3.0.1"
+    "prettier": "3.0.3"
   },
   "peerDependencies": {
     "@prettier/plugin-haml": "0.1.0",
