@@ -41,12 +41,15 @@ const optional = {
 const nodeModuleDir = path.join(process.cwd(), 'node_modules')
 
 let changedFiles
+const plugins = []
 
 const checkOptionalDependencies = async ([extension, pathParts]) => {
-  const exists = await fs.exists(path.join(nodeModuleDir, ...pathParts))
+  const extensionPath = path.join(nodeModuleDir, ...pathParts)
+  const exists = await fs.exists(extensionPath)
 
   if (exists) {
     fileTypes.push(extension)
+    plugins.push(pathParts.join('/'))
   }
 }
 
@@ -60,10 +63,12 @@ const run = async () => {
       ['--file-types', '--fileTypes', '-f'],
       ['--config', '--conf', '-c'],
       ['--silent', '-s'],
+      ['--plugins'],
     ],
     default: {
       '--list-different': [],
       '--file-types': fileTypes,
+      '--plugins': plugins,
       '--exclude': ['node_modules', '.nyc_output'],
     },
     single: ['--config', '--silent'],
@@ -76,6 +81,7 @@ const run = async () => {
         '--conf': 'path to config file',
         '--exclude': 'paths to exclude.',
         '--silent': 'only log changes',
+        '--plugins': 'array of prettier plugins to load',
       },
       example: `
 f     - only --list-different files

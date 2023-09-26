@@ -19,11 +19,24 @@ export const loadConfig = async (cwd, args) => {
       exists = await fs.exists(configPath)
     }
 
+    if (args.plugins) {
+      args.plugins.forEach(plugin => {
+        defaultConfig.plugins.push(plugin)
+      })
+    }
+
     if (!exists) {
       return defaultConfig
     }
 
     const { config } = await import(configPath)
+
+    if (args.plugins) {
+      args.plugins.forEach(plugin => {
+        config.plugins.push(plugin)
+      })
+    }
+
     return config
   } catch (e) {
     return defaultConfig
