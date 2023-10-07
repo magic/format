@@ -319,8 +319,8 @@ update dependencies
 
 ##### 0.0.53
 
-* manually import preinstalled optional prettier plugins
-* update dependencies
+- manually import preinstalled optional prettier plugins
+- update dependencies
 
 ##### 0.0.54 - unreleased
 
