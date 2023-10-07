@@ -322,6 +322,11 @@ update dependencies
 - manually import preinstalled optional prettier plugins
 - update dependencies
 
-##### 0.0.54 - unreleased
+##### 0.0.54
+
+- expose format and formatString as javascript api
+- update dependencies
+
+##### 0.0.55 - unreleased
 
 ...
