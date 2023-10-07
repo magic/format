@@ -61,8 +61,11 @@ export const format = async args => {
         const changed = await prettier.format(content, { ...config, filepath: file })
         if (content !== changed) {
           if (args.write) {
-            await fs.writeFile(file, changed)
+            const tmpFile = file + '.tmp'
+            await fs.writeFile(tmpFile, changed)
+            await fs.rename(tmpFile, file)
           }
+
           return file
         }
       } catch (e) {
