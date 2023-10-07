@@ -52,7 +52,7 @@ export const format = async args => {
 
   const files = await findFiles({ include, exclude, fileTypes })
 
-  const config = await loadConfig(cwd, args)
+  const config = await loadConfig({ args, cwd })
 
   let changedFiles = await Promise.all(
     files.map(async file => {

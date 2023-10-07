@@ -4,7 +4,9 @@ import fs from '@magic/fs'
 
 import { config as defaultConfig } from './defaultConfig.mjs'
 
-export const loadConfig = async (cwd, args) => {
+export const loadConfig = async (params = {}) => {
+  const { args = {}, cwd = process.cwd() } = params
+
   try {
     let configPath = ''
     let exists = false
