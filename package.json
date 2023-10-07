@@ -5,7 +5,7 @@
   "description": "format your code.",
   "license": "AGPL-3.0",
   "homepage": "https://magic.github.io/format",
-  "main": "src/bin.mjs",
+  "main": "src/index.mjs",
   "type": "module",
   "bin": {
     "f": "src/bin.mjs",
