@@ -77,4 +77,14 @@ export const format = async args => {
   return changedFiles.filter(a => a)
 }
 
+export const formatString = async (content, args) => {
+  const config = await loadConfig({ args })
+
+  if (!config.parser) {
+    config.parser = 'babel'
+  }
+
+  return await prettier.format(content, config)
+}
+
 export default format
