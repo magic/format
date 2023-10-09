@@ -331,7 +331,7 @@ update dependencies
 
 - peerDependencies allow newer versions
 
-##### 0.0.56 
+##### 0.0.56
 
 - peerDependencies allow any version
 
