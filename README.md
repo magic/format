@@ -339,6 +339,11 @@ update dependencies
 
 - fix peerDependency resolution
 
-##### 0.0.58 - unreleased
+##### 0.0.58
+
+- readd plugins: [] to defaultConfig,
+  allowing us to expand them with installed peerDependencies
+
+##### 0.0.59 - unreleased
 
 ...
