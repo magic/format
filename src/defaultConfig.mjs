@@ -7,5 +7,5 @@ export const config = {
   trailingComma: 'all',
   bracketSpacing: true,
   arrowParens: 'avoid',
-  // plugins: [],
+  plugins: [],
 }

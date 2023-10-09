@@ -10,7 +10,7 @@ export const spec = {
   trailingComma: 'string',
   bracketSpacing: 'bool',
   arrowParens: 'string',
-  // plugins: [],
+  plugins: 'array',
 }
 
 export default version(config, spec)
