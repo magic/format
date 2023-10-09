@@ -1,4 +1,4 @@
-import { is, version } from '@magic/test'
+import { version } from '@magic/test'
 import { config } from '../src/defaultConfig.mjs'
 
 export const spec = {
