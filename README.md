@@ -327,6 +327,10 @@ update dependencies
 - expose format and formatString as javascript api
 - update dependencies
 
-##### 0.0.55 - unreleased
+##### 0.0.55
+
+- peerDependencies allow newer versions
+
+##### 0.0.56 - unreleased
 
 ...
