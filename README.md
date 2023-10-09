@@ -331,6 +331,10 @@ update dependencies
 
 - peerDependencies allow newer versions
 
-##### 0.0.56 - unreleased
+##### 0.0.56 
+
+- peerDependencies allow any version
+
+##### 0.0.57 - unreleased
 
 ...
