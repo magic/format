@@ -335,6 +335,10 @@ update dependencies
 
 - peerDependencies allow any version
 
-##### 0.0.57 - unreleased
+##### 0.0.57
+
+- fix peerDependency resolution
+
+##### 0.0.58 - unreleased
 
 ...
