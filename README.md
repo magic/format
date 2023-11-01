@@ -344,6 +344,11 @@ update dependencies
 - readd plugins: [] to defaultConfig,
   allowing us to expand them with installed peerDependencies
 
-##### 0.0.59 - unreleased
+##### 0.0.59
+
+- update dependencies
+- add glsl shader support (plugin-prettier-glsl)
+
+##### 0.0.60 - unreleased
 
 ...
