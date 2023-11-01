@@ -46,6 +46,7 @@
     "prettier": "3.0.3"
   },
   "peerDependencies": {
+    "prettier-plugin-glsl": "^0.x",
     "@prettier/plugin-haml": "^0.x",
     "@prettier/plugin-lua": "^0.x",
     "@prettier/plugin-php": "^0.x",
