@@ -40,7 +40,7 @@
   "dependencies": {
     "@magic/cli": "0.0.46",
     "@magic/deep": "0.1.16",
-    "@magic/fs": "0.0.29",
+    "@magic/fs": "0.0.30",
     "@magic/log": "0.1.18",
     "@magic/types": "0.1.23",
     "prettier": "3.0.3"
