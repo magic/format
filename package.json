@@ -43,7 +43,7 @@
     "@magic/fs": "0.0.30",
     "@magic/log": "0.1.18",
     "@magic/types": "0.1.23",
-    "prettier": "3.0.3"
+    "prettier": "3.3.3"
   },
   "peerDependencies": {
     "prettier-plugin-glsl": "^0.x",
