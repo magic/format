@@ -8,4 +8,5 @@ export const config = {
   bracketSpacing: true,
   arrowParens: 'avoid',
   plugins: [],
+  htmlWhitespaceSensitivity: 'ignore',
 }
