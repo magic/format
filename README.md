@@ -349,6 +349,15 @@ update dependencies
 - update dependencies
 - add glsl shader support (plugin-prettier-glsl)
 
-##### 0.0.60 - unreleased
+##### 0.0.60
+
+- update deps
+
+##### 0.0.61
+
+- add htmlWhitespaceSensitivity: ignore
+- update deps
+
+##### 0.0.62 - unreleased
 
 ...
