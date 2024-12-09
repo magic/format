@@ -363,6 +363,10 @@ update dependencies
 - add prettier-plugin-tailwindcss
 - update prettier dependency
 
-##### 0.0.63 - unreleased
+##### 0.0.63
+
+- use prettier-plugin-tailwindcss for svelte files
+
+##### 0.0.64 - unreleased
 
 ...
