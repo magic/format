@@ -358,6 +358,11 @@ update dependencies
 - add htmlWhitespaceSensitivity: ignore
 - update deps
 
-##### 0.0.62 - unreleased
+##### 0.0.62
+
+- add prettier-plugin-tailwindcss
+- update prettier dependency
+
+##### 0.0.63 - unreleased
 
 ...
