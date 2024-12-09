@@ -99,9 +99,12 @@ const checkOptionalDependencies = async ([extension, pathParts]) => {
     fileTypes.push(extension)
     plugins.push(pathParts.join('/'))
 
+    /* prettier-plugin-tailwindcss does not do well with svelte */
+    /*
     if (extension === 'svelte' || extension === 'astro') {
       plugins.push('prettier-plugin-tailwindcss')
     }
+    */
   }
 }
 
