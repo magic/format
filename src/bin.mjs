@@ -60,7 +60,7 @@ const optional = {
   toml: ['@voltiso', 'prettier-plugin-toml'],
   java: ['prettier-plugin-java'],
   astro: ['prettier-plugin-astro'],
-  svelte: ['prettier-plugin-svelte', 'prettier-plugin-tailwindcss'],
+  svelte: ['prettier-plugin-svelte'],
 
   fp: ['prettier-plugin-glsl'],
   frag: ['prettier-plugin-glsl'],
@@ -98,6 +98,10 @@ const checkOptionalDependencies = async ([extension, pathParts]) => {
   if (exists) {
     fileTypes.push(extension)
     plugins.push(pathParts.join('/'))
+
+    if (extension === 'svelte' || extension === 'astro') {
+      plugins.push('prettier-plugin-tailwindcss')
+    }
   }
 }
 
