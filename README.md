@@ -367,6 +367,10 @@ update dependencies
 
 - use prettier-plugin-tailwindcss for svelte files
 
-##### 0.0.64 - unreleased
+##### 0.0.64
+
+- prettier-plugin-tailwindcss: add to svelte and astro apps
+
+##### 0.0.65 - unreleased
 
 ...
