@@ -60,7 +60,7 @@ const optional = {
   toml: ['@voltiso', 'prettier-plugin-toml'],
   java: ['prettier-plugin-java'],
   astro: ['prettier-plugin-astro'],
-  svelte: ['prettier-plugin-svelte'],
+  svelte: ['prettier-plugin-svelte', 'prettier-plugin-tailwindcss'],
 
   fp: ['prettier-plugin-glsl'],
   frag: ['prettier-plugin-glsl'],
