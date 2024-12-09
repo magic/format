@@ -43,7 +43,7 @@
     "@magic/fs": "0.0.30",
     "@magic/log": "0.1.18",
     "@magic/types": "0.1.23",
-    "prettier": "3.3.3"
+    "prettier": "3.4.2"
   },
   "peerDependencies": {
     "prettier-plugin-glsl": "^0.x",
@@ -57,7 +57,8 @@
     "@voltiso/prettier-plugin-toml": "^0.x",
     "prettier-plugin-astro": "^0.x",
     "prettier-plugin-java": "^2.x",
-    "prettier-plugin-svelte": "^3.x"
+    "prettier-plugin-svelte": "^3.x",
+    "prettier-plugin-tailwindcss": "^0.6.9"
   },
   "peerDependenciesMeta": {
     "@prettier/plugin-haml": {
@@ -91,6 +92,9 @@
       "optional": true
     },
     "prettier-plugin-svelte": {
+      "optional": true
+    },
+    "prettier-plugin-tailwindcss": {
       "optional": true
     }
   },
