@@ -21,6 +21,7 @@ const fileTypes = [
   'scss',
   'sass',
   'gltf',
+  'svelte',
 
   /* glsl shader types */
   'fp',
