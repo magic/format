@@ -11,6 +11,7 @@ export const spec = {
   bracketSpacing: 'bool',
   arrowParens: 'string',
   plugins: 'array',
+  htmlWhitespaceSensitivity: 'string',
 }
 
 export default version(config, spec)
