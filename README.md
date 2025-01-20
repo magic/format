@@ -375,6 +375,10 @@ update dependencies
 
 - remove prettier-plugin-tailwindcss, it breaks a lot of svelte code
 
-##### 0.0.66 - unreleased
+##### 0.0.66
+
+- update dependencies
+
+##### 0.0.67 - unreleased
 
 ...
