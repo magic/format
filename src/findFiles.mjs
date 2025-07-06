@@ -5,7 +5,10 @@ import fs from '@magic/fs'
 import is from '@magic/types'
 
 const shouldIgnore = ({ dir, exclude, file }) => {
-  return !exclude.some(e => file === e || path.join(dir, file).endsWith(path.join(e, file)))
+  return !exclude.some(e => {
+    const fullExclude = path.join(dir, e)
+    return file.startsWith(fullExclude)
+  })
 }
 
 export const findFiles = async ({ include = [], exclude = [], fileTypes = [] }) => {
@@ -17,33 +20,22 @@ export const findFiles = async ({ include = [], exclude = [], fileTypes = [] }) 
     exclude = [exclude]
   }
 
+  if (!exclude.includes('.git')) {
+    exclude.push('.git')
+  }
+
   const files = await Promise.all(
     include.map(async dir => {
-      if (dir.startsWith('.')) {
-        return
-      }
-
-      const stat = await fs.stat(dir)
-      let files = []
-      if (stat.isDirectory()) {
-        let dirContent = await fs.readdir(dir)
-        dirContent = dirContent
-          .filter(file => !file.startsWith('.'))
-          .filter(file => shouldIgnore({ dir, exclude, file }))
-          .filter(file => !file.includes('.') || fileTypes.some(ft => file.endsWith(ft)))
-
-        files = await Promise.all(
-          dirContent.map(a => findFiles({ include: [path.join(dir, a)], exclude, fileTypes })),
-        )
-      } else if (stat.isFile()) {
-        if (fileTypes.some(f => dir.endsWith(f))) {
-          files.push(dir)
-        }
-      }
+      const files = await fs.getFiles(dir)
 
       return files
+        .filter(file => file.includes('.'))
+        .filter(file => fileTypes.some(ft => file.endsWith(ft)))
+        .filter(file => shouldIgnore({ dir, exclude, file }))
     }),
   )
 
-  return deep.flatten(files)
+  console.log({ files })
+  const flat = deep.flatten(files)
+  return flat
 }
