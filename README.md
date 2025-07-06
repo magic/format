@@ -383,6 +383,7 @@ update dependencies
 
 - findFiles uses fs.getFiles
 - findFiles also finds dotfile dirs and files
+- add --verbose flag to echo files that get checked
 - update dependencies
 
 ##### 0.0.68 - unreleased
