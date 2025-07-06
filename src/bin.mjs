@@ -119,6 +119,7 @@ const run = async () => {
       ['--config', '--conf', '-c'],
       ['--silent', '-s'],
       ['--plugins'],
+      ['--verbose', '-v'],
     ],
     default: {
       '--list-different': [],
@@ -126,7 +127,7 @@ const run = async () => {
       '--plugins': plugins,
       '--exclude': ['node_modules', '.nyc_output'],
     },
-    single: ['--config', '--silent'],
+    single: ['--config', '--silent', '--verbose'],
     help: {
       name: '@magic/format',
       header: 'format js code using prettier',
@@ -137,6 +138,7 @@ const run = async () => {
         '--exclude': 'paths to exclude.',
         '--silent': 'only log changes',
         '--plugins': 'array of prettier plugins to load',
+        '--verbose': 'echo files that get collected for formatting',
       },
       example: `
 f     - only --list-different files
