@@ -379,6 +379,12 @@ update dependencies
 
 - update dependencies
 
-##### 0.0.67 - unreleased
+##### 0.0.67
+
+- findFiles uses fs.getFiles
+- findFiles also finds dotfile dirs and files
+- update dependencies
+
+##### 0.0.68 - unreleased
 
 ...
