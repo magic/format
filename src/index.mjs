@@ -50,7 +50,7 @@ export const format = async args => {
     fileTypes = args.fileTypes
   }
 
-  const files = await findFiles({ include, exclude, fileTypes })
+  const files = await findFiles({ include, exclude, fileTypes, verbose: args.verbose })
 
   const config = await loadConfig({ args, cwd })
 

@@ -2,6 +2,7 @@ import path from 'path'
 
 import deep from '@magic/deep'
 import fs from '@magic/fs'
+import log from '@magic/log'
 import is from '@magic/types'
 
 const shouldIgnore = ({ dir, exclude, file }) => {
@@ -11,7 +12,12 @@ const shouldIgnore = ({ dir, exclude, file }) => {
   })
 }
 
-export const findFiles = async ({ include = [], exclude = [], fileTypes = [] }) => {
+export const findFiles = async ({
+  include = [],
+  exclude = [],
+  fileTypes = [],
+  verbose = false,
+}) => {
   if (is.string(include)) {
     include = [include]
   }
@@ -35,7 +41,12 @@ export const findFiles = async ({ include = [], exclude = [], fileTypes = [] }) 
     }),
   )
 
-  console.log({ files })
   const flat = deep.flatten(files)
+
+  if (verbose) {
+    log.warn('format', 'checking files:')
+    flat.forEach(file => log.info(file.replace(process.cwd(), '.')))
+  }
+
   return flat
 }
