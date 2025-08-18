@@ -386,6 +386,10 @@ update dependencies
 - add --verbose flag to echo files that get checked
 - update dependencies
 
-##### 0.0.68 - unreleased
+##### 0.0.68
+
+- errors when parsing now emit the relative file path in addition to the error.
+
+##### 0.0.69 - unreleased
 
 ...
