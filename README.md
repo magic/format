@@ -390,6 +390,10 @@ update dependencies
 
 - errors when parsing now emit the relative file path in addition to the error.
 
-##### 0.0.69 - unreleased
+##### 0.0.69
+
+- update dependencies
+
+##### 0.0.70 - unreleased
 
 ...
