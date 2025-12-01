@@ -19,8 +19,8 @@
     "serve": "magic serve",
     "dev": "magic dev",
     "test": "t",
-    "format": "node src/bin.mjs f -w --exclude docs",
-    "format:check": "node src/bin.mjs --exclude docs",
+    "format": "node src/bin.mjs f -w --exclude docs/",
+    "format:check": "node src/bin.mjs --exclude docs/",
     "calls": "calls"
   },
   "engines": {
