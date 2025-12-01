@@ -394,14 +394,10 @@ update dependencies
 
 ##### 0.0.69
 
-- update dependencies
-
-##### 0.0.70
-
 - prettier-plugin-glsl is optional
 - update docs
 - update dependencies
 
-##### 0.0.71 - unreleased
+##### 0.0.70 - unreleased
 
 ...
