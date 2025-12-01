@@ -90,6 +90,8 @@ Just install any of the following and prettier will start checking the appropria
 - astro: prettier-plugin-astro
 - java: prettier-plugin-java
 - svelte: prettier-plugin-svelte
+- glsl: prettier-plugin-glsl
+- tailwind: prettier-plugin-tailwindcss
 
 #### Changelog
 
