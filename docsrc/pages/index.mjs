@@ -46,4 +46,25 @@ f
 // prettier --write
 f -w
   `),
+
+  h2({ id: 'plugins' }, 'plugins'),
+
+  p('@magic/format supports the following prettier plugins:'),
+
+  ul([
+    li('haml: @prettier/plugin-haml'),
+    li('lua: @prettier/plugin-lua'),
+    li('php: @prettier/plugin-php'),
+    li('pug: @prettier/plugin-pug'),
+    li('py: @prettier/plugin-python'),
+    li('rb: @prettier/plugin-ruby'),
+    li('gemspec: @prettier/plugin-ruby'),
+    li('xml: @prettier/plugin-xml'),
+    li('toml: @voltiso/prettier-plugin-toml'),
+    li('astro: prettier-plugin-astro'),
+    li('java: prettier-plugin-java'),
+    li('svelte: prettier-plugin-svelte'),
+    li('glsl: prettier-plugin-glsl'),
+    li('tailwind: prettier-plugin-tailwindcss'),
+  ]),
 ]
