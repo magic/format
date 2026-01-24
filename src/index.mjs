@@ -69,7 +69,7 @@ export const format = async args => {
           return file
         }
       } catch (e) {
-        const relativeFile = file.replace(process.cwd(), '')
+        const relativeFile = file.replace(cwd, '')
         log.error(e.code, `error in file: ${relativeFile}`, e.message)
       }
     }),
