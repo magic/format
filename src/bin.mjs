@@ -8,7 +8,7 @@ import fs from '@magic/fs'
 
 import format from './index.mjs'
 
-const fileTypes = [
+export const fileTypes = [
   'mjs',
   'js',
   'ts',
@@ -48,7 +48,7 @@ const fileTypes = [
   'vshader',
 ]
 
-const optional = {
+export const optional = {
   haml: path.join('@prettier', 'plugin-haml'),
   lua: path.join('@prettier', 'plugin-lua'),
   php: path.join('@prettier', 'plugin-php'),
@@ -87,12 +87,12 @@ const optional = {
   vshader: 'prettier-plugin-glsl',
 }
 
-const nodeModuleDir = path.join(process.cwd(), 'node_modules')
+export const nodeModuleDir = path.join(process.cwd(), 'node_modules')
 
 let changedFiles
 const plugins = []
 
-const checkOptionalDependencies = async ([extension, pluginPath]) => {
+export const checkOptionalDependencies = async ([extension, pluginPath]) => {
   const extensionPath = path.join(nodeModuleDir, pluginPath)
   const exists = await fs.exists(extensionPath)
 
@@ -105,13 +105,13 @@ const checkOptionalDependencies = async ([extension, pluginPath]) => {
   }
 }
 
-const additionalPossiblePrettierPlugins = [
+export const additionalPossiblePrettierPlugins = [
   'prettier-plugin-organize-imports',
   path.join('@trivago', 'prettier-plugin-sort-imports'),
   'prettier-plugin-css-order',
 ]
 
-const checkPossiblePlugins = async pluginPath => {
+export const checkPossiblePlugins = async pluginPath => {
   const extensionPath = path.join(nodeModuleDir, pluginPath)
   const exists = await fs.exists(extensionPath)
 
@@ -120,7 +120,7 @@ const checkPossiblePlugins = async pluginPath => {
   }
 }
 
-const run = async () => {
+export const run = async () => {
   await Promise.all(Object.entries(optional).map(checkOptionalDependencies))
 
   await Promise.all(additionalPossiblePrettierPlugins.map(checkPossiblePlugins))
