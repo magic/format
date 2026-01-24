@@ -49,41 +49,42 @@ const fileTypes = [
 ]
 
 const optional = {
-  haml: ['@prettier', 'plugin-haml'],
-  lua: ['@prettier', 'plugin-lua'],
-  php: ['@prettier', 'plugin-php'],
-  pug: ['@prettier', 'plugin-pug'],
-  py: ['@prettier', 'plugin-python'],
-  rb: ['@prettier', 'plugin-ruby'],
-  gemspec: ['@prettier', 'plugin-ruby'],
-  xml: ['@prettier', 'plugin-xml'],
-  toml: ['@voltiso', 'prettier-plugin-toml'],
-  java: ['prettier-plugin-java'],
-  astro: ['prettier-plugin-astro'],
-  svelte: ['prettier-plugin-svelte'],
+  haml: path.join('@prettier', 'plugin-haml'),
+  lua: path.join('@prettier', 'plugin-lua'),
+  php: path.join('@prettier', 'plugin-php'),
+  pug: path.join('@prettier', 'plugin-pug'),
+  py: path.join('@prettier', 'plugin-python'),
+  rb: path.join('@prettier', 'plugin-ruby'),
+  gemspec: path.join('@prettier', 'plugin-ruby'),
+  xml: path.join('@prettier', 'plugin-xml'),
+  toml: path.join('@voltiso', 'prettier-plugin-toml'),
+  java: path.join('prettier-plugin-java'),
+  astro: path.join('prettier-plugin-astro'),
+  svelte: path.join('prettier-plugin-svelte'),
+  sh: 'prettier-plugin-sh',
 
-  fp: ['prettier-plugin-glsl'],
-  frag: ['prettier-plugin-glsl'],
-  frg: ['prettier-plugin-glsl'],
-  fs: ['prettier-plugin-glsl'],
-  fsh: ['prettier-plugin-glsl'],
-  fshader: ['prettier-plugin-glsl'],
-  geo: ['prettier-plugin-glsl'],
-  geom: ['prettier-plugin-glsl'],
-  glsl: ['prettier-plugin-glsl'],
-  glslf: ['prettier-plugin-glsl'],
-  glslv: ['prettier-plugin-glsl'],
-  gs: ['prettier-plugin-glsl'],
-  gshader: ['prettier-plugin-glsl'],
-  rchit: ['prettier-plugin-glsl'],
-  rmiss: ['prettier-plugin-glsl'],
-  shader: ['prettier-plugin-glsl'],
-  tesc: ['prettier-plugin-glsl'],
-  tese: ['prettier-plugin-glsl'],
-  vert: ['prettier-plugin-glsl'],
-  vrx: ['prettier-plugin-glsl'],
-  vsh: ['prettier-plugin-glsl'],
-  vshader: ['prettier-plugin-glsl'],
+  fp: 'prettier-plugin-glsl',
+  frag: 'prettier-plugin-glsl',
+  frg: 'prettier-plugin-glsl',
+  fs: 'prettier-plugin-glsl',
+  fsh: 'prettier-plugin-glsl',
+  fshader: 'prettier-plugin-glsl',
+  geo: 'prettier-plugin-glsl',
+  geom: 'prettier-plugin-glsl',
+  glsl: 'prettier-plugin-glsl',
+  glslf: 'prettier-plugin-glsl',
+  glslv: 'prettier-plugin-glsl',
+  gs: 'prettier-plugin-glsl',
+  gshader: 'prettier-plugin-glsl',
+  rchit: 'prettier-plugin-glsl',
+  rmiss: 'prettier-plugin-glsl',
+  shader: 'prettier-plugin-glsl',
+  tesc: 'prettier-plugin-glsl',
+  tese: 'prettier-plugin-glsl',
+  vert: 'prettier-plugin-glsl',
+  vrx: 'prettier-plugin-glsl',
+  vsh: 'prettier-plugin-glsl',
+  vshader: 'prettier-plugin-glsl',
 }
 
 const nodeModuleDir = path.join(process.cwd(), 'node_modules')
@@ -91,25 +92,38 @@ const nodeModuleDir = path.join(process.cwd(), 'node_modules')
 let changedFiles
 const plugins = []
 
-const checkOptionalDependencies = async ([extension, pathParts]) => {
-  const extensionPath = path.join(nodeModuleDir, ...pathParts)
+const checkOptionalDependencies = async ([extension, pluginPath]) => {
+  const extensionPath = path.join(nodeModuleDir, pluginPath)
   const exists = await fs.exists(extensionPath)
 
   if (exists) {
-    fileTypes.push(extension)
-    plugins.push(pathParts.join('/'))
-
-    /* prettier-plugin-tailwindcss does not do well with svelte */
-    /*
-    if (extension === 'svelte' || extension === 'astro') {
-      plugins.push('prettier-plugin-tailwindcss')
+    if (!fileTypes.includes(extension)) {
+      fileTypes.push(extension)
     }
-    */
+
+    plugins.push(pluginPath.replace('\\', '/'))
+  }
+}
+
+const additionalPossiblePrettierPlugins = [
+  'prettier-plugin-organize-imports',
+  path.join('@trivago', 'prettier-plugin-sort-imports'),
+  'prettier-plugin-css-order',
+]
+
+const checkPossiblePlugins = async pluginPath => {
+  const extensionPath = path.join(nodeModuleDir, pluginPath)
+  const exists = await fs.exists(extensionPath)
+
+  if (exists) {
+    plugins.push(pluginPath.replace('\\', '/'))
   }
 }
 
 const run = async () => {
   await Promise.all(Object.entries(optional).map(checkOptionalDependencies))
+
+  await Promise.all(additionalPossiblePrettierPlugins.map(checkPossiblePlugins))
 
   const { args } = cli({
     options: [
@@ -173,8 +187,8 @@ run()
 const signals = ['SIGINT', 'SIGTERM']
 
 signals.forEach(signal => {
-  process.on(signal, async code => {
-    if (typeof changedFiles !== undefined) {
+  process.on(signal, async _code => {
+    if (typeof changedFiles !== 'undefined') {
       log.warn('About to exit', 'waiting for files to write...')
       await changedFiles
     }
