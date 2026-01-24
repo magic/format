@@ -398,6 +398,13 @@ update dependencies
 - update docs
 - update dependencies
 
-##### 0.0.70 - unreleased
+##### 0.0.70
+
+- remove peerDependencies
+- detect more plugins
+- some more tests
+- update dependencies
+
+##### 0.0.71 - unreleased
 
 ...
