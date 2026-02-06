@@ -405,6 +405,12 @@ update dependencies
 - some more tests
 - update dependencies
 
-##### 0.0.71 - unreleased
+##### 0.0.71
+
+- change htmlWhitespaceSensitivity to strict
+
+##### 0.0.72 - unreleased
+
+
 
 ...
