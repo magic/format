@@ -414,6 +414,10 @@ update dependencies
 - change htmlWhitespaceSensitivity to css
 - add oneAttributePerLine to false
 
-##### 0.0.72 - unreleased
+##### 0.0.73
+
+- update dependencies
+
+##### 0.0.74 - unreleased
 
 ...
