@@ -9,5 +9,5 @@ export const config = {
   arrowParens: 'avoid',
   plugins: [],
   htmlWhitespaceSensitivity: 'css',
-  singleAttributePerLine: false
+  singleAttributePerLine: false,
 }
