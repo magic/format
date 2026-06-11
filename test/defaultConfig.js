@@ -1,5 +1,5 @@
 import { version } from '@magic/test'
-import { config } from '../src/defaultConfig.mjs'
+import { config } from '../src/defaultConfig.js'
 
 export const spec = {
   semi: 'bool',
@@ -12,6 +12,7 @@ export const spec = {
   arrowParens: 'string',
   plugins: 'array',
   htmlWhitespaceSensitivity: 'string',
+  singleAttributePerLine: 'bool',
 }
 
 export default version(config, spec)

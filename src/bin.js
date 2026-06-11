@@ -6,7 +6,7 @@ import cli from '@magic/cli'
 import log from '@magic/log'
 import fs from '@magic/fs'
 
-import format from './index.mjs'
+import format from './index.js'
 
 export const fileTypes = [
   'mjs',

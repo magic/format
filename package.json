@@ -5,11 +5,11 @@
   "description": "format your code.",
   "license": "AGPL-3.0",
   "homepage": "https://magic.github.io/format",
-  "main": "src/index.mjs",
+  "main": "src/index.js",
   "type": "module",
   "bin": {
-    "f": "src/bin.mjs",
-    "format": "src/bin.mjs"
+    "f": "src/bin.js",
+    "format": "src/bin.js"
   },
   "scripts": {
     "start": "t",
@@ -19,8 +19,8 @@
     "serve": "magic serve",
     "dev": "magic dev",
     "test": "t",
-    "format": "node src/bin.mjs f -w --exclude docs/",
-    "format:check": "node src/bin.mjs --exclude docs/",
+    "format": "node src/bin.js f -w --exclude docs/",
+    "format:check": "node src/bin.js --exclude docs/",
     "calls": "calls"
   },
   "engines": {

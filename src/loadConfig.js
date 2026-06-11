@@ -2,7 +2,7 @@ import path from 'path'
 
 import fs from '@magic/fs'
 
-import { config as defaultConfig } from './defaultConfig.mjs'
+import { config as defaultConfig } from './defaultConfig.js'
 
 export const loadConfig = async (params = {}) => {
   const { args = {}, cwd = process.cwd() } = params

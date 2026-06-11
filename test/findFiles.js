@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { findFiles } from '../src/findFiles.mjs'
+import { findFiles } from '../src/findFiles.js'
 
 const dir = path.join(process.cwd(), 'test', '.findFiles')
 

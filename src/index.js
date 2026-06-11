@@ -7,8 +7,8 @@ import fs from '@magic/fs'
 import is from '@magic/types'
 import log from '@magic/log'
 
-import { findFiles } from './findFiles.mjs'
-import { loadConfig } from './loadConfig.mjs'
+import { findFiles } from './findFiles.js'
+import { loadConfig } from './loadConfig.js'
 
 const cwd = process.cwd()
 
