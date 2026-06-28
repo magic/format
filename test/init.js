@@ -110,4 +110,29 @@ export default [
     expect: true,
     info: 'format handles no gitignore and no exclude',
   },
+  {
+    fn: async () => {
+      await createMockFile()
+      const result = await format({
+        include: testDir,
+        exclude: ['node_modules'],
+        fileTypes: ['js'],
+        write: false,
+      })
+      await cleanMockFile()
+      return Array.isArray(result)
+    },
+    expect: true,
+    info: 'format handles string include parameter',
+  },
+  {
+    fn: async () => {
+      const result = await format({
+        fileTypes: ['js'],
+      })
+      return Array.isArray(result)
+    },
+    expect: true,
+    info: 'format uses cwd when include not provided',
+  },
 ]
