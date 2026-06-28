@@ -1,9 +1,16 @@
+/// <reference path="./types.d.ts" />
+
 import path from 'path'
 
 import fs from '@magic/fs'
 
 import { config as defaultConfig } from './defaultConfig.js'
 
+/**
+ * Loads Prettier configuration from file or defaults
+ * @param {LoadConfigParams} [params={}]
+ * @returns {Promise<PrettierConfig>}
+ */
 export const loadConfig = async (params = {}) => {
   const { args = {}, cwd = process.cwd() } = params
 

@@ -8,6 +8,7 @@ import fs from '@magic/fs'
 
 import format from './index.js'
 
+/** @type {string[]} */
 export const fileTypes = [
   'mjs',
   'js',
@@ -48,6 +49,12 @@ export const fileTypes = [
   'vshader',
 ]
 
+/**
+ * @typedef {Object} OptionalPlugin
+ * @property {string} path - Plugin module path
+ */
+
+/** @type {Record<string, string>} */
 export const optional = {
   haml: path.join('@prettier', 'plugin-haml'),
   lua: path.join('@prettier', 'plugin-lua'),
@@ -87,11 +94,20 @@ export const optional = {
   vshader: 'prettier-plugin-glsl',
 }
 
+/** @type {string} */
 export const nodeModuleDir = path.join(process.cwd(), 'node_modules')
 
+/** @type {string[]|undefined} */
 let changedFiles
+
+/** @type {string[]} */
 const plugins = []
 
+/**
+ * Checks and loads optional prettier plugin if available
+ * @param {[string, string]} entry - [extension, pluginPath]
+ * @returns {Promise<void>}
+ */
 export const checkOptionalDependencies = async ([extension, pluginPath]) => {
   const extensionPath = path.join(nodeModuleDir, pluginPath)
   const exists = await fs.exists(extensionPath)
@@ -105,12 +121,18 @@ export const checkOptionalDependencies = async ([extension, pluginPath]) => {
   }
 }
 
+/** @type {string[]} */
 export const additionalPossiblePrettierPlugins = [
   'prettier-plugin-organize-imports',
   path.join('@trivago', 'prettier-plugin-sort-imports'),
   'prettier-plugin-css-order',
 ]
 
+/**
+ * Checks if a possible plugin exists and adds it
+ * @param {string} pluginPath
+ * @returns {Promise<void>}
+ */
 export const checkPossiblePlugins = async pluginPath => {
   const extensionPath = path.join(nodeModuleDir, pluginPath)
   const exists = await fs.exists(extensionPath)
@@ -120,6 +142,10 @@ export const checkPossiblePlugins = async pluginPath => {
   }
 }
 
+/**
+ * Main CLI entry point
+ * @returns {Promise<void>}
+ */
 export const run = async () => {
   await Promise.all(Object.entries(optional).map(checkOptionalDependencies))
 
@@ -184,6 +210,7 @@ f -w  - overwrite files in place
 
 run()
 
+/** @type {string[]} */
 const signals = ['SIGINT', 'SIGTERM']
 
 signals.forEach(signal => {

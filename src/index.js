@@ -1,3 +1,5 @@
+/// <reference path="./types.d.ts" />
+
 import path from 'path'
 
 import prettier from 'prettier'
@@ -10,10 +12,17 @@ import log from '@magic/log'
 import { findFiles } from './findFiles.js'
 import { loadConfig } from './loadConfig.js'
 
+/** @type {string} */
 const cwd = process.cwd()
 
+/**
+ * Formats code files using Prettier
+ * @param {FormatParams} args
+ * @returns {Promise<string[]>} - Array of changed file paths
+ */
 export const format = async args => {
-  let include = ''
+  /** @type {string[]} */
+  let include = []
   if (args.include) {
     if (is.string(args.include)) {
       include = [args.include]
@@ -24,6 +33,7 @@ export const format = async args => {
     include = [cwd]
   }
 
+  /** @type {string[]} */
   let exclude
 
   const gitIgnorePath = path.join(cwd, '.gitignore')
@@ -45,6 +55,7 @@ export const format = async args => {
 
   exclude = Array.from(new Set(deep.flatten(exclude)))
 
+  /** @type {string[]} */
   let fileTypes = ['js', 'json']
   if (args.fileTypes) {
     fileTypes = args.fileTypes
@@ -78,6 +89,12 @@ export const format = async args => {
   return changedFiles.filter(a => a)
 }
 
+/**
+ * Formats a string using Prettier
+ * @param {string} content - The content to format
+ * @param {FormatParams} [args] - Formatting options
+ * @returns {Promise<string>} - Formatted content
+ */
 export const formatString = async (content, args) => {
   const config = await loadConfig({ args })
 

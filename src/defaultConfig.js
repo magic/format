@@ -1,3 +1,6 @@
+/// <reference path="./types.d.ts" />
+
+/** @type {PrettierConfig} */
 export const config = {
   semi: false,
   printWidth: 100,
