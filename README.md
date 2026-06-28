@@ -425,6 +425,7 @@ update dependencies
 ##### 0.0.75
 
 - better config handling
+- add typescript and types
 - update dependencies
 
 ##### 0.0.76 - unreleased
