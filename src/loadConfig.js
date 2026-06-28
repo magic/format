@@ -12,7 +12,7 @@ export const loadConfig = async (params = {}) => {
     let exists = false
 
     if (args.config) {
-      const configPath = args.config
+      configPath = args.config
 
       if (!path.isAbsolute(configPath)) {
         configPath = path.join(cwd, configPath)
@@ -21,14 +21,14 @@ export const loadConfig = async (params = {}) => {
       exists = await fs.exists(configPath)
     }
 
-    if (args.plugins) {
-      args.plugins.forEach(plugin => {
-        defaultConfig.plugins.push(plugin)
-      })
-    }
-
     if (!exists) {
-      return defaultConfig
+      const config = { ...defaultConfig, plugins: [...defaultConfig.plugins] }
+      if (args.plugins) {
+        args.plugins.forEach(plugin => {
+          config.plugins.push(plugin)
+        })
+      }
+      return config
     }
 
     const { config } = await import(configPath)
@@ -41,6 +41,6 @@ export const loadConfig = async (params = {}) => {
 
     return config
   } catch (e) {
-    return defaultConfig
+    return { ...defaultConfig, plugins: [...defaultConfig.plugins] }
   }
 }
