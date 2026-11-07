@@ -10,6 +10,8 @@ const expectedFullDir = [
   '/home/j/dev/magic/util/format/test/.findFiles/file3.csv',
   '/home/j/dev/magic/util/format/test/.findFiles/subDir/subFile1.js',
   '/home/j/dev/magic/util/format/test/.findFiles/subDir/subFile2.md',
+  '/home/j/dev/magic/util/format/test/.findFiles/routes/docs/file.js',
+  '/home/j/dev/magic/util/format/test/.findFiles/docs/shouldExclude.md',
 ]
 
 const expectedMjsExcluded = [
@@ -17,12 +19,22 @@ const expectedMjsExcluded = [
   '/home/j/dev/magic/util/format/test/.findFiles/file3.csv',
   '/home/j/dev/magic/util/format/test/.findFiles/subDir/subFile1.js',
   '/home/j/dev/magic/util/format/test/.findFiles/subDir/subFile2.md',
+  '/home/j/dev/magic/util/format/test/.findFiles/routes/docs/file.js',
+  '/home/j/dev/magic/util/format/test/.findFiles/docs/shouldExclude.md',
 ]
 
 const expectedSubDirExcluded = [
   '/home/j/dev/magic/util/format/test/.findFiles/file1.mjs',
   '/home/j/dev/magic/util/format/test/.findFiles/file2.txt',
   '/home/j/dev/magic/util/format/test/.findFiles/file3.csv',
+  '/home/j/dev/magic/util/format/test/.findFiles/routes/docs/file.js',
+  '/home/j/dev/magic/util/format/test/.findFiles/docs/shouldExclude.md',
+]
+
+const expectedNestedDirs = ['/home/j/dev/magic/util/format/test/.findFiles/routes/docs/file.js']
+
+const expectedNestedDirsExcluded = [
+  '/home/j/dev/magic/util/format/test/.findFiles/subDir/subFile2.md',
 ]
 
 export default [
@@ -53,5 +65,23 @@ export default [
     }),
     expect: expectedSubDirExcluded,
     info: 'findFiles can exclude by array',
+  },
+  {
+    fn: findFiles({
+      include: dir,
+      exclude: ['docs'],
+      fileTypes: ['.js', '.md'],
+    }),
+    expect: expectedNestedDirs,
+    info: 'findFiles excludes only exact "docs" dir, not nested paths like routes/docs',
+  },
+  {
+    fn: findFiles({
+      include: dir,
+      exclude: ['docs'],
+      fileTypes: ['.md'],
+    }),
+    expect: expectedNestedDirsExcluded,
+    info: 'findFiles excludes direct child docs dir',
   },
 ]
