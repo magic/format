@@ -4,7 +4,7 @@ import fs from '@magic/fs'
 import { getPaths, buildOxfmtArgs, getOxfmtBin, run, setTestOxfmtBin } from '../src/bin.js'
 
 /** @type {string} */
-const fakeOxfmt = path.join(process.cwd(), 'test', '.fixtures', 'fake-oxfmt.mjs')
+const fakeOxfmt = path.join(process.cwd(), 'test', '.fixtures', 'fake-oxfmt.js')
 
 /** @type {Promise<unknown>} */
 let chain = Promise.resolve()
