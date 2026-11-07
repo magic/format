@@ -38,33 +38,49 @@ npm run format:check
 // first install globally
 npm i -g @magic/format
 
-// check formatting using prettier but do not write
-// prettier --list-different
+// check formatting using oxfmt but do not write
+// oxfmt --list-different
 f
 
-// format files using prettier
-// prettier --write
+// format files using oxfmt
+// oxfmt --write
 f -w
   `),
 
-  h2({ id: 'plugins' }, 'plugins'),
+  h2({ id: 'config' }, 'configuration'),
 
-  p('@magic/format supports the following prettier plugins:'),
+  p(
+    'the shared oxfmt config shipped by @magic/format is applied by default, so you do not have to declare formatting rules yourself.',
+  ),
+
+  p(
+    'a project own oxfmt config (.oxfmtrc.json or .oxfmtrc.jsonc) merges over the shared defaults when present, or pass one explicitly:',
+  ),
+
+  Pre('f --config my-config.json'),
+
+  h2({ id: 'languages' }, 'languages'),
+
+  p('@magic/format uses oxfmt, which natively supports a wide range of languages out of the box:'),
 
   ul([
-    li('haml: @prettier/plugin-haml'),
-    li('lua: @prettier/plugin-lua'),
-    li('php: @prettier/plugin-php'),
-    li('pug: @prettier/plugin-pug'),
-    li('py: @prettier/plugin-python'),
-    li('rb: @prettier/plugin-ruby'),
-    li('gemspec: @prettier/plugin-ruby'),
-    li('xml: @prettier/plugin-xml'),
-    li('toml: @voltiso/prettier-plugin-toml'),
-    li('astro: prettier-plugin-astro'),
-    li('java: prettier-plugin-java'),
-    li('svelte: prettier-plugin-svelte'),
-    li('glsl: prettier-plugin-glsl'),
-    li('tailwind: prettier-plugin-tailwindcss'),
+    li('javascript: js, mjs, cjs'),
+    li('typescript: ts, tsx'),
+    li('jsx: jsx'),
+    li('json: json, jsonc, json5, gltf'),
+    li('css: css, scss, less'),
+    li('markdown: md, markdown, mdx'),
+    li('html: html'),
+    li('vue: vue'),
+    li('graphql: graphql'),
+    li('yaml: yaml'),
+    li('toml: toml'),
+  ]),
+
+  p('svelte and astro are supported when their peer package is installed:'),
+
+  ul([
+    li('svelte: install the svelte package'),
+    li('astro: install the @astrojs/compiler-rs package'),
   ]),
 ]
