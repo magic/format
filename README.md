@@ -1,6 +1,25 @@
 # @magic/format
 
-run prettier and format your code.
+run oxfmt and format your code.
+
+#### <a name="warning"></a>warning: prettier got replaced with oxfmt
+
+since 0.0.76, @magic/format runs [oxfmt](https://oxc.rs/docs/guide/usage/formatter)
+instead of prettier. what changed for you:
+
+- the formatting output can differ from prettier in edge cases
+  (line wrapping, comment placement), so expect one reformat pass on the first run.
+- f formats all oxfmt supported file types by default,
+  including html, vue, graphql, yaml, toml, mdx, less, json5 and jsonc.
+- prettier plugin languages are no longer formatted:
+  haml, lua, php, pug, py, rb, gemspec, xml, java and glsl, as well as sass.
+- f now exits with 1 when unformatted files are found (previously always 0),
+  so format:check can gate your ci.
+- a custom config now merges over the shared defaults instead of replacing them
+  (both the cli and the javascript api).
+
+if your project relies on prettier specific output or prettier plugins,
+pin to 0.0.75 until you have reviewed the formatting diff.
 
 [html docs](https://magic.github.io/format)
 
@@ -24,10 +43,15 @@ run prettier and format your code.
 [snyk-image]: https://snyk.io/test/github/magic/format/badge.svg
 [snyk-url]: https://snyk.io/test/github/magic/format
 
+- [warning: prettier got replaced with oxfmt](#warning)
 - [install](#install)
 - [usage](#usage)
   - [npm scripts](#npm-scripts)
   - [cli](#usage-cli)
+  - [configuration](#usage-config)
+  - [languages](#usage-languages)
+  - [javascript api](#usage-js)
+  - [exit codes](#usage-exit-codes)
 
 #### <a name="install"></a>getting started
 
@@ -52,7 +76,9 @@ edit package.json:
 
 `npm run format` will format and overwrite your source files,
 
-`npm run format:check` will list the files that would be changed.
+`npm run format:check` will list the files that would be changed
+and exits with 1 if any of them are found,
+which lets you gate your ci on formatting.
 
 ##### <a name="usage-cli"></a>cli
 
@@ -65,33 +91,102 @@ as well as keeping your bash free of clutter
 ```bash
 npm i -g @magic/format
 
-// check formatting using prettier but do not write
+// check formatting using oxfmt but do not write
 f
 
-// format and overwrite files using prettier
+// format and overwrite files using oxfmt
 f -w
+
+// format specific paths
+f src test
 ```
 
-##### <a name="usage-plugins"></a>prettier plugins
+options:
 
-@magic/format supports a number of prettier plugins out of the box as optional peerDependencies.
-Just install any of the following and prettier will start checking the appropriate files:
+```
+f [paths]          - list the files that need formatting (default)
+f -w [paths]       - format files in place
+f -e <path>        - exclude a path (repeatable, e.g. -e docs)
+f -f <types>       - only format the given file types (e.g. -f js,json)
+f -c <config>      - use the given oxfmt config file
+f -s               - suppress the "no changes needed" message
+f -v               - echo the oxfmt command and its output
+```
 
-- ##### ext: plugin
-- haml: @prettier/plugin-haml
-- lua: @prettier/plugin-lua
-- php: @prettier/plugin-php
-- pug: @prettier/plugin-pug
-- py: @prettier/plugin-python
-- rb: @prettier/plugin-ruby
-- gemspec: @prettier/plugin-ruby
-- xml: @prettier/plugin-xml
-- toml: @voltiso/prettier-plugin-toml
-- astro: prettier-plugin-astro
-- java: prettier-plugin-java
-- svelte: prettier-plugin-svelte
-- glsl: prettier-plugin-glsl
-- tailwind: prettier-plugin-tailwindcss
+##### <a name="usage-config"></a>configuration
+
+@magic/format ships a shared oxfmt config (src/oxfmt.json) that all consumers
+inherit by default, so you do not have to declare formatting rules yourself.
+
+a project own oxfmt config (.oxfmtrc.json or .oxfmtrc.jsonc) takes precedence
+over the shared config. it merges over the shared defaults,
+so a minimal override keeps all the other shared rules:
+
+```json
+{
+  "printWidth": 80
+}
+```
+
+you can also point f at a config file explicitly:
+
+```bash
+f --config my-config.json
+```
+
+the javascript api merges a custom config (args.config) the same way:
+
+```js
+// printWidth 80, everything else from the shared config
+await formatString('const a=1;', { config: 'my-config.json' })
+```
+
+configs in .ts, .mts or .cts cannot be merged here
+and are handed to oxfmt as-is.
+
+##### <a name="usage-languages"></a>languages
+
+oxfmt natively supports: js, mjs, cjs, ts, tsx, jsx, json, jsonc, json5, gltf,
+css, scss, less, md, markdown, mdx, html, vue, graphql, yaml and toml.
+these are all formatted by default.
+
+svelte and astro are formatted when their peer package is installed:
+
+- svelte: install the svelte package
+- astro: install the @astrojs/compiler-rs package
+
+no longer formatted (left over from the prettier plugin era):
+haml, lua, php, pug, py, rb, gemspec, xml, java, glsl and sass.
+
+f honours .gitignore and .prettierignore out of the box.
+
+##### <a name="usage-js"></a>javascript api
+
+```js
+import { format, formatString } from '@magic/format'
+
+// format files (js and json by default), returns the changed file paths
+const changed = await format({ fileTypes: ['js', 'json'] })
+
+// format a string using the shared config
+const out = await formatString('const a=1;')
+```
+
+formatString accepts a config file via args.config.
+legacy prettier parser names in the config (parser: "babel", "babel-ts", "json", ...)
+are mapped to file extensions, unknown parsers default to javascript.
+
+##### <a name="usage-exit-codes"></a>exit codes
+
+- 0: everything is formatted
+- 1: unformatted files were found (check mode)
+- 2: oxfmt reported parse errors
+
+the affected files are printed to stdout, so f can be piped:
+
+```bash
+f | xargs -r cat
+```
 
 #### Changelog
 
@@ -430,4 +525,17 @@ update dependencies
 
 ##### 0.0.76 - unreleased
 
-...
+- replace prettier with oxfmt
+- the cli now runs the oxfmt binary as a child process,
+  inheriting its file discovery, gitignore and prettierignore handling,
+  glob support and threaded parallelism
+- ship a shared oxfmt config (src/oxfmt.json) that all consumers inherit by default.
+  a project own .oxfmtrc.json or .oxfmtrc.jsonc (or f --config) overrides it.
+- f now formats all oxfmt supported file types by default
+- f accepts positional paths (f src test)
+- f exits 1 when unformatted files are found and 2 on parse errors,
+  and prints the affected files to stdout
+- svelte and astro are enabled automatically when their peer package is installed
+- formatString maps legacy prettier parser names to file extensions
+- remove prettier plugin support (haml, lua, php, pug, py, rb, xml, java, glsl) -
+  those languages are not supported by oxfmt

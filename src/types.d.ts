@@ -1,7 +1,7 @@
 // Global type declarations for JSDoc type references
 
 declare global {
-  interface PrettierConfig {
+  interface OxfmtConfig {
     [key: string]: any
     semi?: boolean
     printWidth?: number
@@ -11,10 +11,11 @@ declare global {
     trailingComma?: 'all' | 'none' | 'es5'
     bracketSpacing?: boolean
     arrowParens?: 'avoid' | 'always'
-    plugins?: any[]
     htmlWhitespaceSensitivity?: 'css' | 'strict' | 'ignore'
     singleAttributePerLine?: boolean
-    filepath?: string
+    svelte?: boolean | Record<string, any>
+    astro?: boolean | Record<string, any>
+    /** @deprecated legacy prettier parser name, mapped to a file extension in formatString */
     parser?: string
   }
 
@@ -24,7 +25,6 @@ declare global {
     fileTypes?: string[]
     write?: boolean
     config?: string
-    plugins?: string[]
     verbose?: boolean
     silent?: boolean
   }
@@ -39,8 +39,8 @@ declare global {
   interface LoadConfigParams {
     args?: Record<string, any>
     config?: string
-    plugins?: string[]
     cwd?: string
+    nodeModulesDir?: string
   }
 }
 

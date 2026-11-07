@@ -15,7 +15,9 @@ import is from '@magic/types'
 const shouldIgnore = ({ dir, exclude, file }) => {
   return !exclude.some(e => {
     const fullExclude = path.join(dir, e)
-    return file.startsWith(fullExclude)
+    const escaped = fullExclude.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const re = new RegExp(`^${escaped}(?:/|$)`)
+    return re.test(file)
   })
 }
 
