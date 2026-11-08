@@ -67,7 +67,7 @@
     "@magic/core": "0.0.161",
     "@magic/test": "0.3.51",
     "@types/node": "26.6.6",
-    "typescript": "7.0.2"
+    "typescript": "npm:@typescript/typescript6"
   },
   "engines": {
     "node": ">=14.15.4"
