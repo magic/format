@@ -47,7 +47,8 @@
     "format": "node src/bin.js f -w --exclude docs/ --exclude types/",
     "format:check": "node src/bin.js f --exclude docs/ --exclude types/",
     "calls": "calls",
-    "lint": "l"
+    "lint": "l",
+    "check": "npm run tsc && npm run lint"
   },
   "dependencies": {
     "@magic/cli": "0.0.55",
