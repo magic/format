@@ -138,7 +138,7 @@ the javascript api merges a custom config (args.config) the same way:
 
 ```js
 // printWidth 80, everything else from the shared config
-await formatString('const a=1;', { config: 'my-config.json' })
+await format('const a=1;', { config: 'my-config.json' })
 ```
 
 configs in .ts, .mts or .cts cannot be merged here
@@ -163,18 +163,11 @@ f honours .gitignore and .prettierignore out of the box.
 ##### <a name="usage-js"></a>javascript api
 
 ```js
-import { format, formatString } from '@magic/format'
+import { format } from '@magic/format'
 
 // format files (js and json by default), returns the changed file paths
 const changed = await format({ fileTypes: ['js', 'json'] })
-
-// format a string using the shared config
-const out = await formatString('const a=1;')
 ```
-
-formatString accepts a config file via args.config.
-legacy prettier parser names in the config (parser: "babel", "babel-ts", "json", ...)
-are mapped to file extensions, unknown parsers default to javascript.
 
 ##### <a name="usage-exit-codes"></a>exit codes
 
