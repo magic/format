@@ -516,7 +516,7 @@ update dependencies
 - add typescript and types
 - update dependencies
 
-##### 0.0.76 - unreleased
+##### 0.0.76
 
 - replace prettier with oxfmt
 - the cli now runs the oxfmt binary as a child process,
@@ -532,3 +532,9 @@ update dependencies
 - formatString maps legacy prettier parser names to file extensions
 - remove prettier plugin support (haml, lua, php, pug, py, rb, xml, java, glsl) -
   those languages are not supported by oxfmt
+
+##### 0.0.77
+
+- update isMain check in src/bin.js, fixing it in consumers
+
+##### 0.0.78 - unreleased
