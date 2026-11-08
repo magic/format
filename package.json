@@ -44,8 +44,8 @@
     "serve": "magic serve",
     "dev": "magic dev",
     "test": "t --exclude test --exclude '**/*.d.ts'",
-    "format": "node src/bin.js f -w --exclude docs/ --exclude types/",
-    "format:check": "node src/bin.js f --exclude docs/ --exclude types/",
+    "format": "npm run format:check -- -w",
+    "format:check": "node src/bin.js f --exclude docs/",
     "calls": "calls",
     "lint": "l",
     "check": "npm run tsc && npm run lint"
