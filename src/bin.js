@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import cli from '@magic/cli'
@@ -184,8 +183,11 @@ f --exclude docs   - exclude the docs directory
   return exitCode
 }
 
-// only run when executed directly, not when imported (e.g. by tests)
-const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
+// only run when executed directly, not when imported (e.g. by tests).
+// argv[1] may be a symlink (node_modules/.bin/f) while import.meta.url is the
+// real file, so both sides must be compared by realpath.
+const isMain =
+  process.argv[1] && fs.realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)
 
 if (isMain) {
   try {
