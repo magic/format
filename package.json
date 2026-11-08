@@ -47,16 +47,14 @@
     "format": "node src/bin.js f -w --exclude docs/ --exclude types/",
     "format:check": "node src/bin.js f --exclude docs/ --exclude types/",
     "calls": "calls",
-    "lint": "oxlint"
+    "lint": "l"
   },
   "dependencies": {
     "@magic/cli": "0.0.55",
-    "@magic/deep": "0.1.22",
     "@magic/fs": "0.0.40",
     "@magic/log": "0.1.23",
     "@magic/types": "0.1.40",
-    "oxfmt": "0.77.0",
-    "oxlint": "1.92.0"
+    "oxfmt": "0.77.0"
   },
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.12",
