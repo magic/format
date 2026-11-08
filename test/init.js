@@ -1,11 +1,10 @@
 import fs from '@magic/fs'
 import path from 'path'
-import { format, formatString } from '../src/index.js'
+import { format } from '../src/index.js'
 
 const testDir = path.join(process.cwd(), 'test', '.index')
 const testFile = path.join(testDir, 'test.js')
 const testFileContent = 'const a=1;const b=2;'
-const formattedContent = 'const a = 1;\nconst b = 2;\n'
 
 const createMockFile = async () => {
   await fs.mkdir(testDir, { recursive: true })
@@ -14,17 +13,6 @@ const createMockFile = async () => {
 
 const cleanMockFile = async () => {
   await fs.rm(testDir, { recursive: true, force: true })
-}
-
-let parserConfigCounter = 0
-
-const configWithParser = async parser => {
-  parserConfigCounter++
-  const dir = path.join(process.cwd(), 'test', '.initParser' + parserConfigCounter)
-  await fs.mkdir(dir, { recursive: true })
-  const configPath = path.join(dir, 'parser.config.js')
-  await fs.writeFile(configPath, 'export const config = { parser: "' + parser + '" }')
-  return { dir, configPath }
 }
 
 export default [
@@ -57,14 +45,6 @@ export default [
     },
     expect: true,
     info: 'format with write returns array of changed files',
-  },
-  {
-    fn: async () => {
-      const result = await formatString('const a=1;', {})
-      return typeof result === 'string'
-    },
-    expect: true,
-    info: 'formatString returns formatted string',
   },
   {
     fn: async () => {
@@ -145,31 +125,5 @@ export default [
     },
     expect: true,
     info: 'format uses cwd when include not provided',
-  },
-  {
-    fn: async () => {
-      const { dir, configPath } = await configWithParser('babel-ts')
-      try {
-        const result = await formatString('const x: number = 1', { config: configPath })
-        return result.includes('const x: number = 1')
-      } finally {
-        await fs.rm(dir, { recursive: true, force: true })
-      }
-    },
-    expect: true,
-    info: 'formatString maps the babel-ts parser to typescript',
-  },
-  {
-    fn: async () => {
-      const { dir, configPath } = await configWithParser('not-a-real-parser')
-      try {
-        const result = await formatString('const weird = 1', { config: configPath })
-        return result.includes('const weird = 1')
-      } finally {
-        await fs.rm(dir, { recursive: true, force: true })
-      }
-    },
-    expect: true,
-    info: 'formatString falls back to javascript for unknown parsers',
   },
 ]

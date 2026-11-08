@@ -26,6 +26,14 @@ switch (behavior) {
     process.stderr.write('Expected `}` but found `EOF`\n')
     process.exit(2)
     break
+  case 'error-silent':
+    // parse errors without any stderr, to exercise fallback error messages
+    process.exit(2)
+    break
+  case 'write-error-silent':
+    // write pass with parse errors but no stderr
+    process.exit(2)
+    break
   case 'crash':
     process.stderr.write('boom: exploded\n')
     process.exit(1)
@@ -37,6 +45,18 @@ switch (behavior) {
   case 'write-crash':
     process.stderr.write('boom: write exploded\n')
     process.exit(3)
+    break
+  case 'code5':
+    // non-zero exit without any stderr, to exercise fallback error messages
+    process.exit(5)
+    break
+  case 'silent':
+    // "files differ" exit without listing anything or writing stderr
+    process.exit(1)
+    break
+  case 'sigkill':
+    // killed by signal: close event has code === null
+    process.kill(process.pid, 'SIGKILL')
     break
   default:
     process.exit(0)

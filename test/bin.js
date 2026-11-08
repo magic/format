@@ -1,7 +1,9 @@
 import path from 'node:path'
 import fs from '@magic/fs'
 
-import { getPaths, buildOxfmtArgs, getOxfmtBin, run, setTestOxfmtBin } from '../src/bin.js'
+import { getPaths, run } from '../src/bin.js'
+import { buildOxfmtArgs, getOxfmtBin, setOxfmtBin } from '../src/lib.js'
+import { format } from '../src/index.js'
 
 /** @type {string} */
 const fakeOxfmt = path.join(process.cwd(), 'test', '.fixtures', 'fake-oxfmt.js')
@@ -35,7 +37,7 @@ const runCli = (argv, scenario) =>
     const originalBin = getOxfmtBin()
 
     process.argv = argv
-    setTestOxfmtBin(fakeOxfmt)
+    setOxfmtBin(fakeOxfmt)
     if (scenario) {
       process.env.FAKE_OXFMt_SCENARIO = scenario
     }
@@ -44,7 +46,7 @@ const runCli = (argv, scenario) =>
       return { code: await run() }
     } finally {
       process.argv = originalArgv
-      setTestOxfmtBin(originalBin)
+      setOxfmtBin(originalBin)
       if (originalScenario === undefined) {
         delete process.env.FAKE_OXFMt_SCENARIO
       } else {
@@ -298,5 +300,375 @@ export default [
     },
     expect: true,
     info: 'run cleans up the temp file when oxfmt crashed',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        setOxfmtBin(fakeOxfmt)
+        process.env.FAKE_OXFMt_SCENARIO = 'check=error'
+        try {
+          const result = await format({ include: 'nonexistent', fileTypes: ['js'] })
+          return Array.isArray(result) && result.length === 0
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+        }
+      }),
+    expect: true,
+    info: 'format returns [] when oxfmt reports parse errors (exit 2)',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        setOxfmtBin(fakeOxfmt)
+        process.env.FAKE_OXFMt_SCENARIO = 'check=code5'
+        try {
+          const result = await format({ include: 'nonexistent', fileTypes: ['js'] })
+          return Array.isArray(result) && result.length === 0
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+        }
+      }),
+    expect: true,
+    info: 'format returns [] when oxfmt exits with an unexpected code and no stderr',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        setOxfmtBin(fakeOxfmt)
+        process.env.FAKE_OXFMt_SCENARIO = 'check=crash'
+        try {
+          const result = await format({ include: 'nonexistent', fileTypes: ['js'] })
+          return Array.isArray(result) && result.length === 0
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+        }
+      }),
+    expect: true,
+    info: 'format returns [] when oxfmt exited 1 with stderr but no files listed',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        setOxfmtBin(fakeOxfmt)
+        process.env.FAKE_OXFMt_SCENARIO = 'check=silent'
+        try {
+          const result = await format({ include: 'nonexistent', fileTypes: ['js'] })
+          return Array.isArray(result) && result.length === 0
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+        }
+      }),
+    expect: true,
+    info: 'format returns [] when oxfmt exited 1 with no output at all',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        setOxfmtBin(fakeOxfmt)
+        process.env.FAKE_OXFMt_SCENARIO = 'check=list,write=error'
+        try {
+          const result = await format({
+            include: 'nonexistent',
+            fileTypes: ['js'],
+            write: true,
+          })
+          return Array.isArray(result) && result.length === 0
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+        }
+      }),
+    expect: true,
+    info: 'format returns [] when the write pass reports parse errors (exit 2)',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        setOxfmtBin(fakeOxfmt)
+        process.env.FAKE_OXFMt_SCENARIO = 'check=list,write=write-crash'
+        try {
+          const result = await format({
+            include: 'nonexistent',
+            fileTypes: ['js'],
+            write: true,
+          })
+          return Array.isArray(result) && result.length === 0
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+        }
+      }),
+    expect: true,
+    info: 'format returns [] when the write pass fails with stderr',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        const dir = path.join(process.cwd(), 'test', '.binFormatTempConfig')
+        await fs.mkdir(dir, { recursive: true })
+        const configPath = path.join(dir, 'user.config.json')
+        await fs.writeFile(configPath, '{"printWidth": 80}')
+        setOxfmtBin(fakeOxfmt)
+        process.env.FAKE_OXFMt_SCENARIO = 'check=list,write=write-crash'
+        try {
+          const result = await format({
+            config: configPath,
+            include: 'nonexistent',
+            fileTypes: ['js'],
+            write: true,
+          })
+          return Array.isArray(result) && result.length === 0
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+          await fs.rm(dir, { recursive: true, force: true })
+        }
+      }),
+    expect: true,
+    info: 'format cleans up the merged temp config when the write pass fails',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        const dir = path.join(process.cwd(), 'test', '.binFormatTempConfig')
+        await fs.mkdir(dir, { recursive: true })
+        const configPath = path.join(dir, 'user.config.json')
+        await fs.writeFile(configPath, '{"printWidth": 80}')
+        setOxfmtBin(fakeOxfmt)
+        process.env.FAKE_OXFMt_SCENARIO = 'check=list,write=clean'
+        try {
+          const result = await format({
+            config: configPath,
+            include: 'nonexistent',
+            fileTypes: ['js'],
+            write: true,
+          })
+          return Array.isArray(result) && result.length === 2
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+          await fs.rm(dir, { recursive: true, force: true })
+        }
+      }),
+    expect: true,
+    info: 'format returns the changed files and cleans up the merged temp config on success',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        setOxfmtBin(fakeOxfmt)
+        process.env.FAKE_OXFMt_SCENARIO = 'check=clean'
+        try {
+          let threw = false
+          try {
+            await format({ include: 'nonexistent', fileTypes: 'js' })
+          } catch {
+            threw = true
+          }
+          return threw
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+        }
+      }),
+    expect: true,
+    info: 'format rejects when fileTypes is a string instead of an array',
+  },
+  {
+    fn: async () => {
+      const { code } = await runCli(['node', 'bin.js', 'f', '-v'], 'check=clean')
+      return code === 0
+    },
+    expect: true,
+    info: 'run -v without oxfmt stderr still exits 0',
+  },
+  {
+    fn: async () => {
+      const { code } = await runCli(['node', 'bin.js', 'f', '-w', '-v'], 'check=list,write=clean')
+      return code === 0
+    },
+    expect: true,
+    info: 'run -w -v without write stderr exits 0',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        setOxfmtBin(fakeOxfmt)
+        process.env.FAKE_OXFMt_SCENARIO = 'check=sigkill'
+        try {
+          const { runOxfmt } = await import('../src/lib/runOxfmt.js')
+          const result = await runOxfmt(['--list-different', '.'], process.cwd())
+          return result.code === 1 && result.stdout === '' && result.stderr === ''
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+        }
+      }),
+    expect: true,
+    info: 'runOxfmt resolves code 1 when the oxfmt process is killed by a signal',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        setOxfmtBin('/nonexistent/path/to/oxfmt')
+        if (originalScenario === undefined) {
+          delete process.env.FAKE_OXFMt_SCENARIO
+        }
+        try {
+          const { runOxfmt } = await import('../src/lib/runOxfmt.js')
+          const result = await runOxfmt(['--list-different', '.'], process.cwd())
+          // the node executable starts fine; the missing script makes it exit 1
+          return result.code === 1 && result.stderr.trim().length > 0
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+        }
+      }),
+    expect: true,
+    info: 'runOxfmt reports a non-zero exit when the configured oxfmt binary does not exist',
+  },
+  {
+    fn: async () => {
+      const { code } = await runCli(['node', 'bin.js', 'f'], 'check=error-silent')
+      return code === 2
+    },
+    expect: true,
+    info: 'run exits 2 with a fallback message when oxfmt reports errors without stderr',
+  },
+  {
+    fn: async () => {
+      const { code } = await runCli(
+        ['node', 'bin.js', 'f', '-w'],
+        'check=list,write=write-error-silent',
+      )
+      return code === 2
+    },
+    expect: true,
+    info: 'run -w exits 2 with a fallback message when the write pass reports errors without stderr',
+  },
+  {
+    fn: async () =>
+      serialized(async () => {
+        const originalBin = getOxfmtBin()
+        const originalScenario = process.env.FAKE_OXFMt_SCENARIO
+        setOxfmtBin(fakeOxfmt)
+        process.env.FAKE_OXFMt_SCENARIO = 'check=list,write=write-error-silent'
+        try {
+          const result = await format({
+            include: 'nonexistent',
+            fileTypes: ['js'],
+            write: true,
+          })
+          return Array.isArray(result) && result.length === 0
+        } finally {
+          setOxfmtBin(originalBin)
+          if (originalScenario === undefined) {
+            delete process.env.FAKE_OXFMt_SCENARIO
+          } else {
+            process.env.FAKE_OXFMt_SCENARIO = originalScenario
+          }
+        }
+      }),
+    expect: true,
+    info: 'format returns [] with a fallback message when the write pass reports errors without stderr',
+  },
+  {
+    fn: async () => {
+      const dir = path.join(process.cwd(), 'test', '.binCircularConfig')
+      await fs.mkdir(dir, { recursive: true })
+      await fs.writeFile(
+        path.join(dir, 'circular.js'),
+        'const c = {}\nc.self = c\nexport default c\n',
+      )
+      try {
+        const { spawn } = await import('node:child_process')
+        const code = await new Promise(resolve => {
+          const child = spawn(
+            process.execPath,
+            [path.join(process.cwd(), 'src', 'bin.js'), 'f', '-c', 'circular.js'],
+            {
+              cwd: dir,
+            },
+          )
+          child.on('close', c => resolve(c ?? 1))
+          child.on('error', () => resolve(1))
+        })
+        return code === 1
+      } finally {
+        await fs.rm(dir, { recursive: true, force: true })
+      }
+    },
+    expect: true,
+    info: 'f exits 1 when the user config cannot be serialized (circular reference)',
   },
 ]

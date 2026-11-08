@@ -1,39 +1,13 @@
 #!/usr/bin/env node
 
-import { spawn } from 'node:child_process'
-import { createRequire } from 'node:module'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import cli from '@magic/cli'
 import fs from '@magic/fs'
-import is from '@magic/types'
 import log from '@magic/log'
 
-import { resolveConfigFile } from './config.js'
-
-const require = createRequire(import.meta.url)
-
-/** @type {string|undefined} */
-let testOxfmtBin
-
-/**
- * Overrides the oxfmt binary, for testing
- * @param {string|undefined} bin
- */
-export const setTestOxfmtBin = bin => {
-  testOxfmtBin = bin
-}
-
-/**
- * Resolves the oxfmt binary shipped with our oxfmt dependency.
- * Can be overridden with the MAGIC_FORMAT_OXFMT_BIN env variable (for testing)
- * @returns {string}
- */
-export const getOxfmtBin = () =>
-  testOxfmtBin ||
-  process.env.MAGIC_FORMAT_OXFMT_BIN ||
-  path.join(path.dirname(require.resolve('oxfmt/package.json')), 'bin', 'oxfmt')
+import { buildOxfmtArgs, getOxfmtBin, resolveConfig, runOxfmt } from './lib.js'
 
 /**
  * f flags that consume the next argument as their value
@@ -83,85 +57,6 @@ export const getPaths = (argv = process.argv) => {
 }
 
 /**
- * Builds the oxfmt cli argument list from f's parsed arguments
- * @param {{args?: Record<string, any>, paths?: string[], configFile?: string}} params
- * @returns {string[]}
- */
-export const buildOxfmtArgs = ({ args = {}, paths = [], configFile } = {}) => {
-  const oxfmtArgs = [args.write ? '--write' : '--list-different']
-
-  if (configFile) {
-    oxfmtArgs.push('-c', configFile)
-  }
-
-  if (args.fileTypes && args.fileTypes.length) {
-    oxfmtArgs.push(`**/*.{${args.fileTypes.join(',')}}`)
-  }
-
-  oxfmtArgs.push(...paths)
-
-  if (args.exclude) {
-    const excludes = is.array(args.exclude) ? args.exclude : [args.exclude]
-    for (const exclude of excludes) {
-      const pattern = exclude.startsWith('!')
-        ? exclude.slice(1)
-        : `${String(exclude).replace(/\/+$/, '')}/**`
-      oxfmtArgs.push(`!${pattern}`)
-    }
-  }
-
-  oxfmtArgs.push('--no-error-on-unmatched-pattern')
-
-  return oxfmtArgs
-}
-
-/**
- * Runs oxfmt with the given arguments
- * @param {string[]} oxfmtArgs
- * @param {string} cwd
- * @returns {Promise<{code: number, stdout: string, stderr: string}>}
- */
-const runOxfmt = (oxfmtArgs, cwd) =>
-  new Promise(resolve => {
-    const child = spawn(process.execPath, [getOxfmtBin(), ...oxfmtArgs], {
-      cwd,
-      stdio: ['ignore', 'pipe', 'pipe'],
-    })
-
-    /** @type {string[]} */
-    const stdout = []
-    /** @type {string[]} */
-    const stderr = []
-
-    child.stdout.on('data', chunk => stdout.push(String(chunk)))
-    child.stderr.on('data', chunk => stderr.push(String(chunk)))
-
-    /** @type {Record<string, () => void>} */
-    const signalHandlers = {}
-    for (const signal of /** @type {NodeJS.Signals[]} */ (['SIGINT', 'SIGTERM'])) {
-      signalHandlers[signal] = () => {
-        if (child.exitCode === null) {
-          log.warn('About to exit', 'stopping oxfmt...')
-          child.kill(signal)
-        }
-      }
-      process.once(signal, signalHandlers[signal])
-    }
-
-    const finish = result => {
-      for (const [signal, handler] of Object.entries(signalHandlers)) {
-        process.removeListener(signal, handler)
-      }
-      resolve(result)
-    }
-
-    child.on('close', code =>
-      finish({ code: code ?? 1, stdout: stdout.join(''), stderr: stderr.join('') }),
-    )
-    child.on('error', () => finish({ code: 1, stdout: '', stderr: 'failed to start oxfmt' }))
-  })
-
-/**
  * Main CLI entry point
  * @returns {Promise<number>} - the exit code
  */
@@ -200,7 +95,7 @@ f --exclude docs   - exclude the docs directory
   })
 
   const cwd = process.cwd()
-  const { file: configFile, temp } = await resolveConfigFile({ args, cwd })
+  const { file: configFile, temp } = await resolveConfig(args, cwd)
 
   const cleanTemp = async () => {
     if (temp) {
@@ -293,10 +188,11 @@ f --exclude docs   - exclude the docs directory
 const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
 
 if (isMain) {
-  run()
-    .then(code => process.exit(code ?? 0))
-    .catch(error => {
-      log.error(error)
-      process.exit(1)
-    })
+  try {
+    const code = await run()
+    process.exit(code ?? 0)
+  } catch (error) {
+    log.error(error)
+    process.exit(1)
+  }
 }

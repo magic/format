@@ -42,7 +42,7 @@ console.log(JSON.stringify({ isArray: Array.isArray(result) }));
 
     const parsed = JSON.parse(result.trim())
     return parsed.isArray
-  } catch (e) {
+  } catch {
     return false
   }
 }

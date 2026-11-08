@@ -15,9 +15,35 @@ const createFixture = async (fixture, files) => {
 }
 
 /** @type {string} */
-const ansi = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g
-
-const stripAnsi = text => text.replace(ansi, '')
+const stripAnsi = text => {
+  let result = ''
+  let i = 0
+  while (i < text.length) {
+    if (text.charCodeAt(i) === 0x1b) {
+      // ESC encountered, skip the escape sequence
+      i++ // skip ESC
+      if (i < text.length && text.charCodeAt(i) === 0x5b) {
+        i++ // skip '['
+        // skip parameter bytes (digits and semicolons)
+        while (
+          (i < text.length && text.charCodeAt(i) >= 0x30 && text.charCodeAt(i) <= 0x39) ||
+          text.charCodeAt(i) === 0x3b
+        ) {
+          i++
+        }
+        // skip final byte (usually a letter)
+        if (i < text.length) {
+          i++ // skip final byte
+        }
+      }
+      // if not CSI, we have already skipped ESC; just continue
+    } else {
+      result += text[i]
+      i++
+    }
+  }
+  return result
+}
 
 /**
  * Runs f in the given directory
