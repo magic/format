@@ -1,1 +1,1 @@
-export function readUserConfig(file: string): Promise<Record<string, any> | null>;
+export function readUserConfig(file: string): Promise<Record<string, any> | null>

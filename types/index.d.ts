@@ -1,2 +1,2 @@
-export * from "./lib.js";
-export function format(args?: FormatParams): Promise<string[]>;
+export * from './lib.js'
+export function format(args?: FormatParams): Promise<string[]>

@@ -1,1 +1,1 @@
-export function writeTempConfig(config: Record<string, any>): Promise<string>;
+export function writeTempConfig(config: Record<string, any>): Promise<string>
