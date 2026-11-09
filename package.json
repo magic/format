@@ -35,7 +35,7 @@
     "./types": "./types/"
   },
   "scripts": {
-    "start": "t --exclude test --exclude '**/*.d.ts'",
+    "start": "t",
     "build": "tsc && npm run format",
     "tsc": "tsc --noEmit",
     "build:docs": "NODE_ENV=production magic build",
@@ -43,10 +43,10 @@
     "clean": "magic clean",
     "serve": "magic serve",
     "dev": "magic dev",
-    "test": "t --exclude test --exclude '**/*.d.ts'",
+    "test": "t",
+    "test:ci": "npm run test -- -p",
     "format": "npm run format:check -- -w",
     "format:check": "node src/bin.js f --exclude docs/",
-    "calls": "calls",
     "lint": "l",
     "check": "npm run tsc && npm run lint"
   },
