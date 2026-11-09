@@ -55,7 +55,7 @@
     "@magic/fs": "0.0.40",
     "@magic/log": "0.1.23",
     "@magic/types": "0.1.40",
-    "oxfmt": "0.77.0"
+    "oxfmt": "0.78.0"
   },
   "devDependencies": {
     "@magic-modules/git-badges": "0.0.12",
@@ -65,7 +65,7 @@
     "@magic-themes/docs": "0.0.15",
     "@magic/core": "0.0.161",
     "@magic/lint": "0.0.3",
-    "@magic/test": "0.3.51",
+    "@magic/test": "0.3.53",
     "@types/node": "26.6.6",
     "typescript": "npm:@typescript/typescript6"
   },
