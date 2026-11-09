@@ -183,338 +183,15 @@ f | xargs -r cat
 
 #### Changelog
 
-##### 0.0.1
+##### 0.0.78
 
-first commit
+- migrate type declarations from .d.ts to .ts files
+- replace JSDoc types with TypeScript interfaces
+- update type references and exports to TypeScript module structure
 
-##### 0.0.2
+##### 0.0.77
 
-- change error output
-- node version is strict
-
-##### 0.0.3
-
-update deps
-
-##### 0.0.4
-
-update info messages
-
-##### 0.0.5
-
-update dependencies
-
-##### 0.0.6
-
-messages now being logged from bin.mjs, making src/index.mjs return a list of changedFiles instead.
-
-##### 0.0.7
-
-- cli script awaits format before displaying information
-- add --silent option to suppress info if nothing got changed
-
-##### 0.0.8
-
-update dependencies
-
-##### 0.0.9
-
-update prettier
-
-##### 0.0.10
-
-update dependencies
-
-##### 0.0.11
-
-bump required node version to 14.2.0
-
-##### 0.0.12
-
-- do not error if .gitignore does not exist
-
-##### 0.0.13
-
-- npm i -g @magic/format now is actually usable.
-
-##### 0.0.14
-
-update dependencies
-
-##### 0.0.15
-
-update dependencies
-
-##### 0.0.16
-
-update dependencies
-
-##### 0.0.17
-
-update dependencies
-
-##### 0.0.18
-
-update dependencies
-
-##### 0.0.19
-
-update dependencies
-
-##### 0.0.20
-
-update dependencies
-
-##### 0.0.21
-
-- bump required node version to 14.15.4
-- update dependencies
-
-##### 0.0.22
-
-update dependencies (@magic/fs)
-
-##### 0.0.23
-
-update dependencies
-
-##### 0.0.24
-
-update dependencies
-
-##### 0.0.25
-
-- update dependencies (@magic/fs)
-- ** broken npm cache **
-
-##### 0.0.26
-
-release to refresh npm cache
-
-##### 0.0.27
-
-update @magic/types and intermediate deps to avoid circular dependency
-
-##### 0.0.28
-
-update depdendencies
-
-##### 0.0.29
-
-update dependencies
-
-##### 0.0.30
-
-update dependencies
-
-##### 0.0.31
-
-update dependencies
-
-##### 0.0.32
-
-- format .js files by default
-- update dependencies
-
-##### 0.0.33
-
-- update dependencies
-
-##### 0.0.34
-
-- less runtime errors
-- more tests
-- update dependencies
-
-##### 0.0.35
-
-update dependencies
-
-##### 0.0.36
-
-update dependencies
-
-##### 0.0.37
-
-update dependencies
-
-##### 0.0.38
-
-update dependencies
-
-##### 0.0.39
-
-- update dependencies
-- make sure errors happening whilst formatting files
-  do not lead to data loss in other files
-  that are being written at that same point in time
-
-##### 0.0.40
-
-update dependencies
-
-##### 0.0.41
-
-update dependencies
-
-##### 0.0.42
-
-update dependencies
-
-##### 0.0.43
-
-update dependencies
-
-##### 0.0.44
-
-- add svelte and astro support (prettier-plugin-svelte and prettier-plugin-astro)
-- support more filetypes as default:
-  `mjs, js, ts, json, jsx, tsx, svelte, astro, markdown, md`
-
-##### 0.0.45
-
-add `css, scss, sass` filetypes
-
-##### 0.0.46
-
-catch SIGINT and wait for files to write before executing process.exit()
-
-##### 0.0.47
-
-- add pug and gltf to default --file-types
-- update dependencies
-
-##### 0.0.48
-
-actually distribute @prettier/plugin-pug
-
-##### 0.0.49
-
-- update dependencies
-- move all prettier plugins to optionalDependencies, we can install them where needed
-
-##### 0.0.50
-
-- update dependencies
-- add various prettier plugins as optional peerDependencies, and check for them in the cli. if they exist, add their extensions to the prettier fileTypes
-- catch SIGTERM in addition to SIGINT. SIGKILL is uncatchable.
-
-##### 0.0.51
-
-update dependencies
-
-##### 0.0.52
-
-update dependencies
-
-##### 0.0.53
-
-- manually import preinstalled optional prettier plugins
-- update dependencies
-
-##### 0.0.54
-
-- expose format and formatString as javascript api
-- update dependencies
-
-##### 0.0.55
-
-- peerDependencies allow newer versions
-
-##### 0.0.56
-
-- peerDependencies allow any version
-
-##### 0.0.57
-
-- fix peerDependency resolution
-
-##### 0.0.58
-
-- readd plugins: [] to defaultConfig,
-  allowing us to expand them with installed peerDependencies
-
-##### 0.0.59
-
-- update dependencies
-- add glsl shader support (plugin-prettier-glsl)
-
-##### 0.0.60
-
-- update deps
-
-##### 0.0.61
-
-- add htmlWhitespaceSensitivity: ignore
-- update deps
-
-##### 0.0.62
-
-- add prettier-plugin-tailwindcss
-- update prettier dependency
-
-##### 0.0.63
-
-- use prettier-plugin-tailwindcss for svelte files
-
-##### 0.0.64
-
-- prettier-plugin-tailwindcss: add to svelte and astro apps
-
-##### 0.0.65
-
-- remove prettier-plugin-tailwindcss, it breaks a lot of svelte code
-
-##### 0.0.66
-
-- update dependencies
-
-##### 0.0.67
-
-- findFiles uses fs.getFiles
-- findFiles also finds dotfile dirs and files
-- add --verbose flag to echo files that get checked
-- update dependencies
-
-##### 0.0.68
-
-- errors when parsing now emit the relative file path in addition to the error.
-
-##### 0.0.69
-
-- prettier-plugin-glsl is optional
-- update docs
-- update dependencies
-
-##### 0.0.70
-
-- remove peerDependencies
-- detect more plugins
-- some more tests
-- update dependencies
-
-##### 0.0.71
-
-- change htmlWhitespaceSensitivity to strict
-
-##### 0.0.72
-
-- change htmlWhitespaceSensitivity to css
-- add oneAttributePerLine to false
-
-##### 0.0.73
-
-- update dependencies
-
-##### 0.0.74
-
-- update dependencies
-
-##### 0.0.75
-
-- better config handling
-- add typescript and types
-- update dependencies
+- update isMain check in src/bin.js, fixing it in consumers
 
 ##### 0.0.76
 
@@ -533,8 +210,335 @@ update dependencies
 - remove prettier plugin support (haml, lua, php, pug, py, rb, xml, java, glsl) -
   those languages are not supported by oxfmt
 
-##### 0.0.77
+##### 0.0.75
 
-- update isMain check in src/bin.js, fixing it in consumers
+- better config handling
+- add typescript and types
+- update dependencies
 
-##### 0.0.78 - unreleased
+##### 0.0.74
+
+- update dependencies
+
+##### 0.0.73
+
+- update dependencies
+
+##### 0.0.72
+
+- change htmlWhitespaceSensitivity to css
+- add oneAttributePerLine to false
+
+##### 0.0.71
+
+- change htmlWhitespaceSensitivity to strict
+
+##### 0.0.70
+
+- remove peerDependencies
+- detect more plugins
+- some more tests
+- update dependencies
+
+##### 0.0.69
+
+- prettier-plugin-glsl is optional
+- update docs
+- update dependencies
+
+##### 0.0.68
+
+- errors when parsing now emit the relative file path in addition to the error.
+
+##### 0.0.67
+
+- findFiles uses fs.getFiles
+- findFiles also finds dotfile dirs and files
+- add --verbose flag to echo files that get checked
+- update dependencies
+
+##### 0.0.66
+
+- update dependencies
+
+##### 0.0.65
+
+- remove prettier-plugin-tailwindcss, it breaks a lot of svelte code
+
+##### 0.0.64
+
+- prettier-plugin-tailwindcss: add to svelte and astro apps
+
+##### 0.0.63
+
+- use prettier-plugin-tailwindcss for svelte files
+
+##### 0.0.62
+
+- add prettier-plugin-tailwindcss
+- update prettier dependency
+
+##### 0.0.61
+
+- add htmlWhitespaceSensitivity: ignore
+- update deps
+
+##### 0.0.60
+
+- update deps
+
+##### 0.0.59
+
+- update dependencies
+- add glsl shader support (plugin-prettier-glsl)
+
+##### 0.0.58
+
+- readd plugins: [] to defaultConfig,
+  allowing us to expand them with installed peerDependencies
+
+##### 0.0.57
+
+- fix peerDependency resolution
+
+##### 0.0.56
+
+- peerDependencies allow any version
+
+##### 0.0.55
+
+- peerDependencies allow newer versions
+
+##### 0.0.54
+
+- expose format and formatString as javascript api
+- update dependencies
+
+##### 0.0.53
+
+- manually import preinstalled optional prettier plugins
+- update dependencies
+
+##### 0.0.52
+
+update dependencies
+
+##### 0.0.51
+
+update dependencies
+
+##### 0.0.50
+
+- update dependencies
+- add various prettier plugins as optional peerDependencies, and check for them in the cli. if they exist, add their extensions to the prettier fileTypes
+- catch SIGTERM in addition to SIGINT. SIGKILL is uncatchable.
+
+##### 0.0.49
+
+- update dependencies
+- move all prettier plugins to optionalDependencies, we can install them where needed
+
+##### 0.0.48
+
+actually distribute @prettier/plugin-pug
+
+##### 0.0.47
+
+- add pug and gltf to default --file-types
+- update dependencies
+
+##### 0.0.46
+
+catch SIGINT and wait for files to write before executing process.exit()
+
+##### 0.0.45
+
+add `css, scss, sass` filetypes
+
+##### 0.0.44
+
+- add svelte and astro support (prettier-plugin-svelte and prettier-plugin-astro)
+- support more filetypes as default:
+  `mjs, js, ts, json, jsx, tsx, svelte, astro, markdown, md`
+
+##### 0.0.43
+
+update dependencies
+
+##### 0.0.42
+
+update dependencies
+
+##### 0.0.41
+
+update dependencies
+
+##### 0.0.40
+
+update dependencies
+
+##### 0.0.39
+
+- update dependencies
+- make sure errors happening whilst formatting files
+  do not lead to data loss in other files
+  that are being written at that same point in time
+
+##### 0.0.38
+
+update dependencies
+
+##### 0.0.37
+
+update dependencies
+
+##### 0.0.36
+
+update dependencies
+
+##### 0.0.35
+
+update dependencies
+
+##### 0.0.34
+
+- less runtime errors
+- more tests
+- update dependencies
+
+##### 0.0.33
+
+- update dependencies
+
+##### 0.0.32
+
+- format .js files by default
+- update dependencies
+
+##### 0.0.31
+
+update dependencies
+
+##### 0.0.30
+
+update dependencies
+
+##### 0.0.29
+
+update dependencies
+
+##### 0.0.28
+
+update depdendencies
+
+##### 0.0.27
+
+update @magic/types and intermediate deps to avoid circular dependency
+
+##### 0.0.26
+
+release to refresh npm cache
+
+##### 0.0.25
+
+- update dependencies (@magic/fs)
+- ** broken npm cache **
+
+##### 0.0.24
+
+update dependencies
+
+##### 0.0.23
+
+update dependencies
+
+##### 0.0.22
+
+update dependencies (@magic/fs)
+
+##### 0.0.21
+
+- bump required node version to 14.15.4
+- update dependencies
+
+##### 0.0.20
+
+update dependencies
+
+##### 0.0.19
+
+update dependencies
+
+##### 0.0.18
+
+update dependencies
+
+##### 0.0.17
+
+update dependencies
+
+##### 0.0.16
+
+update dependencies
+
+##### 0.0.15
+
+update dependencies
+
+##### 0.0.14
+
+update dependencies
+
+##### 0.0.13
+
+- npm i -g @magic/format now is actually usable.
+
+##### 0.0.12
+
+- do not error if .gitignore does not exist
+
+##### 0.0.11
+
+bump required node version to 14.2.0
+
+##### 0.0.10
+
+update dependencies
+
+##### 0.0.9
+
+update prettier
+
+##### 0.0.8
+
+update dependencies
+
+##### 0.0.7
+
+- cli script awaits format before displaying information
+- add --silent option to suppress info if nothing got changed
+
+##### 0.0.6
+
+messages now being logged from bin.mjs, making src/index.mjs return a list of changedFiles instead.
+
+##### 0.0.5
+
+update dependencies
+
+##### 0.0.4
+
+update info messages
+
+##### 0.0.3
+
+update deps
+
+##### 0.0.2
+
+- change error output
+- node version is strict
+
+##### 0.0.1
+
+first commit
