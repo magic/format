@@ -1,4 +1,4 @@
-/// <reference path="../types.d.ts" />
+/// <reference path="../types.ts" />
 
 import { spawn } from 'node:child_process'
 

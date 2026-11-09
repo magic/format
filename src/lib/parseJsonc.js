@@ -1,4 +1,4 @@
-/// <reference path="../types.d.ts" />
+/// <reference path="../types.ts" />
 
 /**
  * Skips whitespace, line comments and block comments
