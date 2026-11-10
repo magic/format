@@ -183,6 +183,11 @@ f | xargs -r cat
 
 #### Changelog
 
+##### 0.0.79
+
+- add svelte: true to src/oxfmt.config.js
+- update dev dependencies
+
 ##### 0.0.78
 
 - migrate type declarations from .d.ts to .ts files
