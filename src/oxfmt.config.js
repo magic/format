@@ -1,3 +1,4 @@
+/** @type {import("oxfmt").OxfmtConfig} */
 const config = {
   semi: false,
   printWidth: 100,
@@ -10,6 +11,7 @@ const config = {
   htmlWhitespaceSensitivity: 'css',
   singleAttributePerLine: false,
   sortPackageJson: true,
+  svelte: true,
 }
 
 export default config
