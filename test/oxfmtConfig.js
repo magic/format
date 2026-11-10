@@ -13,6 +13,7 @@ export const spec = {
   htmlWhitespaceSensitivity: 'string',
   singleAttributePerLine: 'bool',
   sortPackageJson: 'bool',
+  svelte: 'bool',
 }
 
 export default version(sharedConfig, spec)
