@@ -186,15 +186,14 @@ f --exclude docs   - exclude the docs directory
 // only run when executed directly, not when imported (e.g. by tests).
 // argv[1] may be a symlink (node_modules/.bin/f) while import.meta.url is the
 // real file, so both sides must be compared by realpath.
+//
+// no try/catch around run(): the only realistic reject is writeTempConfig
+// (temp config file write), and an unhandled rejection dies with the full
+// stack and exit 1 — more useful than a formatted one-liner.
 const isMain =
   process.argv[1] && fs.realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)
 
 if (isMain) {
-  try {
-    const code = await run()
-    process.exit(code ?? 0)
-  } catch (error) {
-    log.error(error)
-    process.exit(1)
-  }
+  const code = await run()
+  process.exit(code)
 }
