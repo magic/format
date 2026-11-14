@@ -28,5 +28,7 @@ export const runOxfmt = (oxfmtArgs, cwd) =>
     child.on('close', code =>
       resolve({ code: code ?? 1, stdout: stdout.join(''), stderr: stderr.join('') }),
     )
-    child.on('error', () => resolve({ code: 1, stdout: '', stderr: 'failed to start oxfmt' }))
+    child.on('error', error =>
+      resolve({ code: 1, stdout: '', stderr: `failed to start oxfmt: ${error.message}\n` }),
+    )
   })
