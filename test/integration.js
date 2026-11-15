@@ -14,7 +14,7 @@ const createFixture = async (fixture, files) => {
   }
 }
 
-/** @type {string} */
+/** @type {(text: string) => string} */
 const stripAnsi = text => {
   let result = ''
   let i = 0
