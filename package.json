@@ -38,6 +38,7 @@
     "start": "t",
     "build": "tsc && npm run format",
     "tsc": "tsc --noEmit",
+    "tsc:test": "tsc --noEmit -p tsconfig.test.json",
     "build:docs": "NODE_ENV=production magic build",
     "prod": "NODE_ENV=production magic build serve",
     "clean": "magic clean",
@@ -48,7 +49,7 @@
     "format": "npm run format:check -- -w",
     "format:check": "node src/bin.js f --exclude docs/",
     "lint": "l",
-    "check": "npm run tsc && npm run lint"
+    "check": "npm run tsc && npm run tsc:test && npm run lint"
   },
   "dependencies": {
     "@magic/cli": "0.0.55",
