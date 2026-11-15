@@ -515,6 +515,7 @@ export default [
         try {
           let threw = false
           try {
+            // @ts-expect-error - intentionally passing a string to verify runtime rejection
             await format({ include: 'nonexistent', fileTypes: 'js' })
           } catch {
             threw = true
