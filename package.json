@@ -52,10 +52,10 @@
     "check": "npm run tsc && npm run tsc:test && npm run lint"
   },
   "dependencies": {
-    "@magic/cli": "0.0.55",
-    "@magic/fs": "0.0.40",
-    "@magic/log": "0.1.23",
-    "@magic/types": "0.1.40",
+    "@magic/cli": "0.0.56",
+    "@magic/fs": "0.0.41",
+    "@magic/log": "0.1.26",
+    "@magic/types": "0.1.42",
     "oxfmt": "0.78.0"
   },
   "devDependencies": {
@@ -66,7 +66,7 @@
     "@magic-themes/docs": "0.0.15",
     "@magic/core": "0.0.161",
     "@magic/lint": "0.0.5",
-    "@magic/test": "0.3.55",
+    "@magic/test": "0.3.57",
     "@types/node": "26.6.6",
     "typescript": "npm:@typescript/typescript6"
   },
