@@ -1,5 +1,3 @@
-/// <reference path="../types.ts" />
-
 import is from '@magic/types'
 
 /**

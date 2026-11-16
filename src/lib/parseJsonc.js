@@ -1,5 +1,3 @@
-/// <reference path="../types.ts" />
-
 /**
  * Skips whitespace, line comments and block comments
  * starting at index i

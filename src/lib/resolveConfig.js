@@ -1,5 +1,3 @@
-/// <reference path="../types.ts" />
-
 import path from 'node:path'
 
 import fs from '@magic/fs'

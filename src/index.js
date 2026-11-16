@@ -1,5 +1,3 @@
-/// <reference path="./types.ts" />
-
 import fs from '@magic/fs'
 import is from '@magic/types'
 import log from '@magic/log'
@@ -12,7 +10,14 @@ export * from './lib.js'
  * Formats code files using the oxfmt cli.
  * oxfmt takes care of file discovery, config resolution
  * and gitignore handling.
- * @param {import("./types.js").FormatParams} [args]
+ * @param {object} [args]
+ * @param {string | string[]} [args.include]
+ * @param {string | string[]} [args.exclude]
+ * @param {string[]} [args.fileTypes]
+ * @param {boolean} [args.write]
+ * @param {string} [args.config]
+ * @param {boolean} [args.silent]
+ * @param {boolean} [args.verbose]
  * @returns {Promise<string[]>} - Array of changed file paths
  */
 export const format = async (args = {}) => {
