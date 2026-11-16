@@ -48,7 +48,7 @@
     "test:ci": "npm run test -- -p",
     "format": "npm run format:check -- -w",
     "format:check": "node src/bin.js f --exclude docs/",
-    "lint": "l",
+    "lint": "lint",
     "check": "npm run tsc && npm run tsc:test && npm run lint"
   },
   "dependencies": {
