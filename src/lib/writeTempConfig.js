@@ -2,6 +2,7 @@ import os from 'node:os'
 import path from 'node:path'
 
 import fs from '@magic/fs'
+
 import { tempConfigFilePrefix } from '../constants.js'
 
 /** @type {number} */

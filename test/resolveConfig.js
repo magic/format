@@ -1,6 +1,7 @@
-import fs from '@magic/fs'
-import path from 'path'
 import crypto from 'node:crypto'
+import path from 'path'
+
+import fs from '@magic/fs'
 
 import { sharedConfigPath } from '../src/constants.js'
 import { resolveConfig } from '../src/lib/resolveConfig.js'

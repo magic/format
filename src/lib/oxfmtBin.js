@@ -1,5 +1,5 @@
-import path from 'node:path'
 import mod from 'node:module'
+import path from 'node:path'
 
 const require = mod.createRequire(import.meta.url)
 

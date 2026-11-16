@@ -1,6 +1,7 @@
-import fs from '@magic/fs'
-import path from 'path'
 import crypto from 'node:crypto'
+import path from 'path'
+
+import fs from '@magic/fs'
 
 import { readUserConfig } from '../src/lib/readUserConfig.js'
 

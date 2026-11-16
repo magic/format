@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process'
 import path from 'path'
+
 import fs from '@magic/fs'
 
 const binPath = path.join(process.cwd(), 'src', 'bin.js')

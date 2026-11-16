@@ -1,6 +1,7 @@
-import path from 'path'
-import fs from '@magic/fs'
 import { execSync } from 'node:child_process'
+import path from 'path'
+
+import fs from '@magic/fs'
 
 // Use /tmp for testing - it has no gitignore
 const testDir = '/tmp/.magic-format-test-no-gitignore'

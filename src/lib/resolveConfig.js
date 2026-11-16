@@ -4,9 +4,8 @@ import fs from '@magic/fs'
 
 import { configFiles, sharedConfigPath } from '../constants.js'
 import { default as sharedConfig } from '../oxfmt.config.js'
-
-import { writeTempConfig } from './writeTempConfig.js'
 import { readUserConfig } from './readUserConfig.js'
+import { writeTempConfig } from './writeTempConfig.js'
 
 /**
  * Resolves the config file to pass to the oxfmt cli.

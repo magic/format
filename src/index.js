@@ -1,6 +1,6 @@
 import fs from '@magic/fs'
-import is from '@magic/types'
 import log from '@magic/log'
+import is from '@magic/types'
 
 import { resolveConfig, runOxfmt, buildOxfmtArgs } from './lib.js'
 

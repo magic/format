@@ -1,5 +1,7 @@
-import fs from '@magic/fs'
 import path from 'path'
+
+import fs from '@magic/fs'
+
 import { format } from '../src/index.js'
 
 const testDir = path.join(process.cwd(), 'test', '.index')

@@ -1,4 +1,5 @@
 import { version } from '@magic/test'
+
 import { default as sharedConfig } from '../src/oxfmt.config.js'
 
 export const spec = {

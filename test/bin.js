@@ -1,9 +1,10 @@
 import path from 'node:path'
+
 import fs from '@magic/fs'
 
 import { getPaths, run } from '../src/bin.js'
-import { buildOxfmtArgs, getOxfmtBin, setOxfmtBin } from '../src/lib.js'
 import { format } from '../src/index.js'
+import { buildOxfmtArgs, getOxfmtBin, setOxfmtBin } from '../src/lib.js'
 
 /** @type {string} */
 const fakeOxfmt = path.join(process.cwd(), 'test', '.fixtures', 'fake-oxfmt.js')
