@@ -75,10 +75,17 @@ const runF = (dir, flags) =>
     child.on('error', () => resolve({ code: 1, stdout: '', stderr: 'failed to start f' }))
   })
 
+/**
+ * @param {string} dir
+ */
 const cleanDir = async dir => {
   await fs.rm(dir, { recursive: true, force: true })
 }
 
+/**
+ * @param {string} name
+ * @returns {string}
+ */
 const fixtureDir = name => path.join(process.cwd(), 'test', `.integration-${name}`)
 
 export default [

@@ -16,6 +16,10 @@ const cleanMockFile = async () => {
   await fs.rm(testDir, { recursive: true, force: true })
 }
 
+/**
+ * @param {string} dir
+ * @param {Record<string, unknown>} [args]
+ */
 const runFormatInDir = (dir, args = {}) => {
   try {
     const argsStr = Object.entries(args)

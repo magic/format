@@ -1,6 +1,7 @@
 // fake oxfmt cli for testing @magic/format
 // behavior is driven by FAKE_OXFMt_SCENARIO, e.g. "check=list,write=error"
 
+/** @type {Record<string, string>} */
 const behaviors = {}
 for (const pair of (process.env.FAKE_OXFMt_SCENARIO || '').split(',')) {
   const [mode, behavior] = pair.split('=')
