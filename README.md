@@ -183,6 +183,11 @@ f | xargs -r cat
 
 #### Changelog
 
+##### 0.0.80
+
+- fix: include spawn error in runOxfmt failure output, showing underlying error messages (ENOENT, EACCES) instead of generic 'failed to start oxfmt'
+- refactor: let bin entry fail with a full stack trace for better error diagnostics during temp config write failures
+
 ##### 0.0.79
 
 - add svelte: true to src/oxfmt.config.js
