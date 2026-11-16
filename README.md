@@ -183,6 +183,10 @@ f | xargs -r cat
 
 #### Changelog
 
+##### 0.0.82
+
+- format now sorts imports
+
 ##### 0.0.81
 
 - update dependencies
