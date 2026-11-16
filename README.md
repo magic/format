@@ -183,6 +183,10 @@ f | xargs -r cat
 
 #### Changelog
 
+##### 0.0.81
+
+- update dependencies
+
 ##### 0.0.80
 
 - fix: include spawn error in runOxfmt failure output, showing underlying error messages (ENOENT, EACCES) instead of generic 'failed to start oxfmt'
