@@ -15,6 +15,14 @@ export const spec = {
   singleAttributePerLine: 'bool',
   sortPackageJson: 'bool',
   svelte: 'bool',
+  sortImports: [
+    'object',
+    {
+      customGroups: 'array',
+      newlinesBetween: 'boolean',
+      groups: 'array',
+    },
+  ],
 }
 
 export default version(sharedConfig, spec)
